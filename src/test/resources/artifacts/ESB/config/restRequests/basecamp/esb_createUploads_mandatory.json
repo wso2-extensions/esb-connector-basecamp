@@ -1,0 +1,12 @@
+{
+  "apiUrl": "%s(apiUrl)",
+  "accessToken": "%s(accessToken)",
+  "accountId": "%s(accountId)",
+  "projectId": "%s(projectId)",
+  "attachments": [
+    {
+      "token": "%s(token)",
+      "name": "%s(txtFileName)"
+    }
+  ]
+}
