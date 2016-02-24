@@ -20,14 +20,11 @@
        statistics="disable" trace="disable" startOnLoad="true">
     <target>
         <inSequence>
-
             <basecamp.createAttachment>
                 <apiUrl>{$url:apiUrl}</apiUrl>
                 <accountId>{$url:accountId}</accountId>
             </basecamp.createAttachment>
-
             <respond></respond>
-
         </inSequence>
         <outSequence>
             <log></log>
