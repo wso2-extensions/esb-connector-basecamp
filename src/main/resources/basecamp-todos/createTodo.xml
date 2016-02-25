@@ -47,7 +47,6 @@
         <!-- Construct payload for optional parameters -->
         <script language="js">
             <![CDATA[
-			
 				//payload variables
 				var dueDate = mc.getProperty("uri.var.dueDate");
 				var assignee = mc.getProperty("uri.var.assignee");
@@ -57,12 +56,10 @@
 				if (dueDate != null && dueDate != "") {
 					payload.due_at = dueDate;
 				}
-				
 				if (assignee != null && assignee != "") {
 					payload.assignee = eval("(" + assignee + ")");
 				}
-				mc.setPayloadJSON(payload);	
-				
+				mc.setPayloadJSON(payload);
 			]]>
         </script>
 

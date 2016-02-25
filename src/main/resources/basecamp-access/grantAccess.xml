@@ -15,7 +15,6 @@
  ~  specific language governing permissions and limitations
  ~  under the License.
 -->
-
 <template name="grantAccess" xmlns="http://ws.apache.org/ns/synapse">
     <parameter name="projectId" description="The project identifier from which the access will be granted"/>
     <parameter name="idList" description="The list of people identifiers to grant access to"/>
@@ -35,21 +34,17 @@
 
         <script language="js">
             <![CDATA[
-			
 				//Creates payload for optional parameters
 				var idList = mc.getProperty("uri.var.idList");
 				var emailList = mc.getProperty("uri.var.emailList");
-				
 				payload = mc.getPayloadJSON();
 				
 				if (idList != null && idList != "") {
 					payload.ids = eval("(" + idList + ")");
 				}
-				
 				if (emailList != null && emailList != "") {
 					payload.email_addresses = eval("(" + emailList + ")");
 				}
-								
 				mc.setPayloadJSON(payload);	
 				
 			]]>

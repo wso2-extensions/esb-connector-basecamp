@@ -25,28 +25,24 @@
         <property name="uri.var.page" expression="$func:page"/>
 
         <script language="js">
-            <![CDATA[
+        <![CDATA[
 	
 		var since = mc.getProperty('uri.var.since');
 		var page = mc.getProperty('uri.var.page');
 		var urlQuery = "";
-		
 		// Append query parameters
 		if(since != null && since != "") {
 			urlQuery += 'since=' + since + '&';
 		}
-		
 		if(page != null && page != "") {
 			urlQuery += 'page=' + page + '&';
 		}
-		
 		if(urlQuery!=""){
 		urlQuery = '?' + urlQuery.substring(0, urlQuery.length-1);
 		mc.setProperty('uri.var.urlQuery', urlQuery);
 		}
-		
-					
-	]]></script>
+	    ]]>
+        </script>
 
         <call>
             <endpoint>
