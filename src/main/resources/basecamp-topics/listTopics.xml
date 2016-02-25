@@ -19,11 +19,9 @@
 <template name="listTopics" xmlns="http://ws.apache.org/ns/synapse">
     <parameter name="projectId" description="The project identifier from which attachments are listed"/>
     <parameter name="page" description="The page number for pagination"/>
-
     <sequence>
         <property name="uri.var.projectId" expression="$func:projectId"/>
         <property name="uri.var.page" expression="$func:page"/>
-
         <!-- Changes the end points to get either project specific attachments or all of them depending on the presence of project
             Id -->
         <filter source="boolean(get-property('uri.var.projectId'))" regex="true">
@@ -35,7 +33,6 @@
                 <property name="uri.var.apiUrl" expression="fn:concat(get-property('uri.var.apiUrl'), '/topics.json')"/>
             </else>
         </filter>
-
         <!-- adds optional query parameter, page -->
         <filter source="boolean(get-property('uri.var.page'))" regex="true">
             <then>

@@ -31,7 +31,6 @@
                           expression="fn:concat(get-property('uri.var.apiUrl'), '/projects.json')"/>
             </else>
         </filter>
-
         <call>
             <endpoint>
                 <http method="get" uri-template="{+uri.var.apiUrl}"/>

@@ -34,7 +34,6 @@
                 <arg expression="get-property('uri.var.name')"/>
             </args>
         </payloadFactory>
-
         <!-- Construct payload for optional parameters -->
         <script language="js">
             <![CDATA[

@@ -17,10 +17,8 @@
 -->
 <template name="starProject" xmlns="http://ws.apache.org/ns/synapse">
     <parameter name="projectId" description="The project identifier of the project to be starred"/>
-
     <sequence>
         <property name="uri.var.projectId" expression="$func:projectId"/>
-
         <!-- Clears the request payload -->
         <payloadFactory media-type="json">
             <format>

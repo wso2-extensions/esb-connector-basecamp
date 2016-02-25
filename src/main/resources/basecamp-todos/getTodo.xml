@@ -19,18 +19,15 @@
 <template name="getTodo" xmlns="http://ws.apache.org/ns/synapse">
     <parameter name="projectId" description="The project id containing the to do"/>
     <parameter name="todoId" description="The todo id to be retrieved"/>
-
     <sequence>
         <property name="uri.var.projectId" expression="$func:projectId"/>
         <property name="uri.var.todoId" expression="$func:todoId"/>
-
         <call>
             <endpoint>
                 <http method="get"
                       uri-template="{+uri.var.apiUrl}/projects/{+uri.var.projectId}/todos/{+uri.var.todoId}.json"/>
             </endpoint>
         </call>
-
         <!-- Remove response custom header information -->
         <header name="X-Runtime" scope="transport" action="remove"/>
         <header name="X-XSS-Protection" scope="transport" action="remove"/>
