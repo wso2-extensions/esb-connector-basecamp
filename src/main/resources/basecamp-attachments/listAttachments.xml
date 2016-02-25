@@ -27,7 +27,6 @@
 
         <script language="js">
             <![CDATA[
-			
 				//construct url
 				var apiUrl = mc.getProperty("uri.var.apiUrl");
 				var projectId = mc.getProperty("uri.var.projectId");
@@ -36,30 +35,23 @@
 
 				//Changes the end points to get either project specific attachments 
 				//or all of them depending on the presence of project Id
-			
 				if (projectId != null && projectId != "") {
 					apiUrl += '/projects/' + projectId;
 				}
-				
 				apiUrl += '/attachments.json';
-				
 				var urlQuery = "";
 				
 				// Append query parameters
 				if(sort != null && sort != "") {
 					urlQuery += 'sort=' + sort + '&';
 				}
-				
 				if(page != null && page != "") {
 					urlQuery += 'page=' + page + '&';
 				}
-				
 				if(urlQuery != ""){
 					apiUrl += '?' + urlQuery.substring(0, urlQuery.length-1);
 				}
-				
 				mc.setProperty("uri.var.apiUrl", apiUrl);
-				
 			]]>
         </script>
 

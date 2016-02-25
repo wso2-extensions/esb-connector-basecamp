@@ -42,22 +42,18 @@
         <!-- Construct payload for optional parameters -->
         <script language="js">
             <![CDATA[
-		
 			//payload variables
 			var subscribers = mc.getProperty("uri.var.subscribers");
 			var attachments = mc.getProperty("uri.var.attachments");
 			var content = mc.getProperty("uri.var.content");
 			
 			payload = mc.getPayloadJSON();
-			
 			if (subscribers != null && subscribers != "") {
 				payload.subscribers = eval("(" + subscribers + ")");
 			}
-			
 			if (attachments != null && attachments != "") {
 				payload.attachments = eval("(" + attachments + ")");
 			}
-			
 			if (content != null && content != "") {
 				payload.content = content;
 			}

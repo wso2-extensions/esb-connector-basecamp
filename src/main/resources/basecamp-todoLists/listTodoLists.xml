@@ -19,18 +19,15 @@
 <template name="listTodoLists" xmlns="http://ws.apache.org/ns/synapse">
     <parameter name="projectId" description="The id of the project"/>
     <parameter name="isComplete" description="Whether the todo list is completed or not"/>
-
     <sequence>
         <property name="uri.var.projectId" expression="$func:projectId"/>
         <property name="uri.var.isComplete" expression="$func:isComplete"/>
-
         <filter source="boolean(get-property('uri.var.projectId'))" regex="true">
             <then>
                 <property name="uri.var.apiUrl"
                           expression="fn:concat(get-property('uri.var.apiUrl'), '/projects/', get-property('uri.var.projectId'))"/>
             </then>
         </filter>
-
         <property name="uri.var.apiUrl" expression="fn:concat(get-property('uri.var.apiUrl'), '/todolists')"/>
 
         <filter source="get-property('uri.var.isComplete')" regex="true">
@@ -38,7 +35,6 @@
                 <property name="uri.var.apiUrl" expression="fn:concat(get-property('uri.var.apiUrl'), '/completed')"/>
             </then>
         </filter>
-
         <call>
             <endpoint>
                 <http method="get" uri-template="{+uri.var.apiUrl}.json"/>

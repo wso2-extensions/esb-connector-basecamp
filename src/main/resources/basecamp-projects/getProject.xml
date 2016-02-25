@@ -17,16 +17,13 @@
 -->
 <template name="getProject" xmlns="http://ws.apache.org/ns/synapse">
     <parameter name="projectId" description="Project ID which is associated with the project"/>
-
     <sequence>
         <property name="uri.var.projectId" expression="$func:projectId"/>
-
         <call>
             <endpoint>
                 <http method="get" uri-template="{+uri.var.apiUrl}/projects/{+uri.var.projectId}.json"/>
             </endpoint>
         </call>
-
         <!-- Remove response custom header information -->
         <header name="X-Runtime" scope="transport" action="remove"/>
         <header name="X-XSS-Protection" scope="transport" action="remove"/>

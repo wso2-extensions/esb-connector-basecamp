@@ -25,14 +25,12 @@
     <parameter name="dueDate" description="The due Date of the to do"/>
     <parameter name="assignee"
                description="The assignee, an JSON object containing the person id and type"/>
-
     <sequence>
         <property name="uri.var.projectId" expression="$func:projectId"/>
         <property name="uri.var.todoListId" expression="$func:todoListId"/>
         <property name="uri.var.content" expression="$func:content"/>
         <property name="uri.var.dueDate" expression="$func:dueDate"/>
         <property name="uri.var.assignee" expression="$func:assignee"/>
-
         <payloadFactory media-type="json">
             <format>
                 {
@@ -43,11 +41,9 @@
                 <arg expression="get-property('uri.var.content')"/>
             </args>
         </payloadFactory>
-
         <!-- Construct payload for optional parameters -->
         <script language="js">
             <![CDATA[
-			
 				//payload variables
 				var dueDate = mc.getProperty("uri.var.dueDate");
 				var assignee = mc.getProperty("uri.var.assignee");
@@ -57,15 +53,12 @@
 				if (dueDate != null && dueDate != "") {
 					payload.due_at = dueDate;
 				}
-				
 				if (assignee != null && assignee != "") {
 					payload.assignee = eval("(" + assignee + ")");
 				}
-				mc.setPayloadJSON(payload);	
-				
+				mc.setPayloadJSON(payload);
 			]]>
         </script>
-
         <call>
             <endpoint>
                 <http method="post"

@@ -37,12 +37,9 @@
                 <arg expression="get-property('uri.var.attachments')"/>
             </args>
         </payloadFactory>
-
-
         <!-- Construct payload for optional parameters -->
         <script language="js">
             <![CDATA[
-			
 				//optional payload variables
 				var content = mc.getProperty("uri.var.content");
 				var subscribers = mc.getProperty("uri.var.subscribers");
@@ -52,12 +49,10 @@
 				if (content != null && content != "") {
 					payload.content = content;
 				}
-				
 				if (subscribers != null && subscribers != "") {
 					payload.subscribers = eval("(" + subscribers + ")");
 				}
-				mc.setPayloadJSON(payload);	
-				
+				mc.setPayloadJSON(payload);
 			]]>
         </script>
 
