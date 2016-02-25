@@ -45,8 +45,7 @@
 				if (emailList != null && emailList != "") {
 					payload.email_addresses = eval("(" + emailList + ")");
 				}
-				mc.setPayloadJSON(payload);	
-				
+				mc.setPayloadJSON(payload);
 			]]>
         </script>
 
