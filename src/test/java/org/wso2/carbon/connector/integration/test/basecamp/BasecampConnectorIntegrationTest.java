@@ -18,19 +18,19 @@
 
 package org.wso2.carbon.connector.integration.test.basecamp;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.JSONArray;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.wso2.connector.integration.test.base.ConnectorIntegrationTestBase;
 import org.wso2.connector.integration.test.base.RestResponse;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBase {
 
@@ -52,7 +52,7 @@ public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBa
     @BeforeClass(alwaysRun = true)
     public void setEnvironment() throws Exception {
 
-        init("basecamp-connector-1.0.0");
+        init("basecamp-connector-1.0.1-SNAPSHOT");
         esbRequestHeadersMap.put("Content-Type", "application/json");
         apiRequestHeadersMap.putAll(esbRequestHeadersMap);
         apiRequestHeadersMap.put("Authorization", "Bearer " + connectorProperties.getProperty("accessToken"));
