@@ -52,7 +52,7 @@ public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBa
     @BeforeClass(alwaysRun = true)
     public void setEnvironment() throws Exception {
 
-        init("basecamp-connector-1.0.1-SNAPSHOT");
+        init("basecamp-connector-1.0.1");
         esbRequestHeadersMap.put("Content-Type", "application/json");
         apiRequestHeadersMap.putAll(esbRequestHeadersMap);
         apiRequestHeadersMap.put("Authorization", "Bearer " + connectorProperties.getProperty("accessToken"));
