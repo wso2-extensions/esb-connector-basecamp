@@ -38,6 +38,5 @@
         <header name="X-Asset-Paths" scope="transport" action="remove"/>
         <header name="WWW-Authenticate" scope="transport" action="remove"/>
         <header name="Location" scope="transport" action="remove"/>
-
     </sequence>
 </template>

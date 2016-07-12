@@ -6,10 +6,5 @@
   "sectionType": "messages",
   "sectionId": "%s(messageId)",
   "content": "sample content new",
-  "subscribers": [%
-  s
-  (
-  personId
-  )
-]
+  "subscribers": [%s(personId)]
 }

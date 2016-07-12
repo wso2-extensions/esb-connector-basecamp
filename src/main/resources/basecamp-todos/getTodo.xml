@@ -15,7 +15,6 @@
  ~  specific language governing permissions and limitations
  ~  under the License.
 -->
-
 <template name="getTodo" xmlns="http://ws.apache.org/ns/synapse">
     <parameter name="projectId" description="The project id containing the to do"/>
     <parameter name="todoId" description="The todo id to be retrieved"/>
@@ -39,6 +38,5 @@
         <header name="X-Asset-Paths" scope="transport" action="remove"/>
         <header name="WWW-Authenticate" scope="transport" action="remove"/>
         <header name="Location" scope="transport" action="remove"/>
-
     </sequence>
 </template>

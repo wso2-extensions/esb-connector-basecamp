@@ -15,7 +15,6 @@
  ~  specific language governing permissions and limitations
  ~  under the License.
 -->
-
 <template name="listTopics" xmlns="http://ws.apache.org/ns/synapse">
     <parameter name="projectId" description="The project identifier from which attachments are listed"/>
     <parameter name="page" description="The page number for pagination"/>
@@ -40,13 +39,11 @@
                           expression="fn:concat(get-property('uri.var.apiUrl'), '?page=', get-property('uri.var.page'))"/>
             </then>
         </filter>
-
         <call>
             <endpoint>
                 <http method="get" uri-template="{+uri.var.apiUrl}"/>
             </endpoint>
         </call>
-
         <!-- Remove response custom header information -->
         <header name="X-Runtime" scope="transport" action="remove"/>
         <header name="X-XSS-Protection" scope="transport" action="remove"/>
@@ -58,6 +55,5 @@
         <header name="X-Asset-Paths" scope="transport" action="remove"/>
         <header name="WWW-Authenticate" scope="transport" action="remove"/>
         <header name="Location" scope="transport" action="remove"/>
-
     </sequence>
 </template>

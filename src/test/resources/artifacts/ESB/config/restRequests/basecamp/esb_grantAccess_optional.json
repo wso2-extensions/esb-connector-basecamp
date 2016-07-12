@@ -3,10 +3,5 @@
   "accessToken": "%s(accessToken)",
   "accountId": "%s(accountId)",
   "projectId": "%s(projectId)",
-  "idList": [%
-  s
-  (
-  personId
-  )
-]
+  "idList": [%s(personId)]
 }

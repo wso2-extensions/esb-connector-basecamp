@@ -15,15 +15,12 @@
  ~  specific language governing permissions and limitations
  ~  under the License.
 -->
-
 <template name="createProject" xmlns="http://ws.apache.org/ns/synapse">
     <parameter name="name" description="The name of the project which is creating"/>
     <parameter name="description" description="The description of the project which is creating"/>
-
     <sequence>
         <property name="uri.var.name" expression="$func:name"/>
         <property name="uri.var.description" expression="$func:description"/>
-
         <payloadFactory media-type="json">
             <format>
                 {
@@ -49,13 +46,11 @@
 			mc.setPayloadJSON(payload);	
 		]]>
         </script>
-
         <call>
             <endpoint>
                 <http method="post" uri-template="{+uri.var.apiUrl}/projects.json"/>
             </endpoint>
         </call>
-
         <!-- Remove response custom header information -->
         <header name="X-Runtime" scope="transport" action="remove"/>
         <header name="X-XSS-Protection" scope="transport" action="remove"/>
@@ -67,6 +62,5 @@
         <header name="X-Asset-Paths" scope="transport" action="remove"/>
         <header name="WWW-Authenticate" scope="transport" action="remove"/>
         <header name="Location" scope="transport" action="remove"/>
-
     </sequence>
 </template>

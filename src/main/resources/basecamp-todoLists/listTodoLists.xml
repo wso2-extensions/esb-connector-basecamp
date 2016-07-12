@@ -15,7 +15,6 @@
  ~  specific language governing permissions and limitations
  ~  under the License.
 -->
-
 <template name="listTodoLists" xmlns="http://ws.apache.org/ns/synapse">
     <parameter name="projectId" description="The id of the project"/>
     <parameter name="isComplete" description="Whether the todo list is completed or not"/>
@@ -29,7 +28,6 @@
             </then>
         </filter>
         <property name="uri.var.apiUrl" expression="fn:concat(get-property('uri.var.apiUrl'), '/todolists')"/>
-
         <filter source="get-property('uri.var.isComplete')" regex="true">
             <then>
                 <property name="uri.var.apiUrl" expression="fn:concat(get-property('uri.var.apiUrl'), '/completed')"/>
@@ -40,7 +38,6 @@
                 <http method="get" uri-template="{+uri.var.apiUrl}.json"/>
             </endpoint>
         </call>
-
         <!-- Remove response custom header information -->
         <header name="X-Runtime" scope="transport" action="remove"/>
         <header name="X-XSS-Protection" scope="transport" action="remove"/>
@@ -52,6 +49,5 @@
         <header name="X-Asset-Paths" scope="transport" action="remove"/>
         <header name="WWW-Authenticate" scope="transport" action="remove"/>
         <header name="Location" scope="transport" action="remove"/>
-
     </sequence>
 </template>
