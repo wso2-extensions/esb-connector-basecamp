@@ -3,5 +3,5 @@
   "accessToken": "%s(accessToken)",
   "accountId": "%s(accountId)",
   "type": "projects",
-  "id": "9607807"
+  "id": "%s(projectId)"
 }

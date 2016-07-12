@@ -19,12 +19,10 @@
     <parameter name="projectId" description="The project identifier from which attachments are listed"/>
     <parameter name="page" description="The page number for pagination"/>
     <parameter name="sort" description="The sorting type to sort the results"/>
-
     <sequence>
         <property name="uri.var.projectId" expression="$func:projectId"/>
         <property name="uri.var.page" expression="$func:page"/>
         <property name="uri.var.sort" expression="$func:sort"/>
-
         <script language="js">
             <![CDATA[
 				//construct url
@@ -49,19 +47,16 @@
 					urlQuery += 'page=' + page + '&';
 				}
 				if(urlQuery != ""){
-					apiUrl += '?' + urlQuery.substring(0, urlQuery.length-1);
+					apiUrl += '?' + urlQuery.toString().substring(0, urlQuery.toString().lastIndexOf("&"));
 				}
 				mc.setProperty("uri.var.apiUrl", apiUrl);
 			]]>
         </script>
-
-
         <call>
             <endpoint>
                 <http method="get" uri-template="{+uri.var.apiUrl}"/>
             </endpoint>
         </call>
-
         <!-- Remove response custom header information -->
         <header name="X-Runtime" scope="transport" action="remove"/>
         <header name="X-XSS-Protection" scope="transport" action="remove"/>
@@ -73,6 +68,5 @@
         <header name="X-Asset-Paths" scope="transport" action="remove"/>
         <header name="WWW-Authenticate" scope="transport" action="remove"/>
         <header name="Location" scope="transport" action="remove"/>
-
     </sequence>
 </template>

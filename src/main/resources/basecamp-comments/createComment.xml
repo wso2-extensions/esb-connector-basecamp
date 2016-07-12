@@ -24,7 +24,6 @@
     <parameter name="subscribers" description="The subscribers, list of people IDs to be notified about this comment"/>
     <parameter name="attachments"
                description="The attachments, array contaning lists of tokens and the names of an already created attachments"/>
-
     <sequence>
         <property name="uri.var.projectId" expression="$func:projectId"/>
         <property name="uri.var.sectionType" expression="$func:sectionType"/>
@@ -32,13 +31,11 @@
         <property name="uri.var.content" expression="$func:content"/>
         <property name="uri.var.subscribers" expression="$func:subscribers"/>
         <property name="uri.var.attachments" expression="$func:attachments"/>
-
         <payloadFactory media-type="json">
             <format>
                 {}
             </format>
         </payloadFactory>
-
         <!-- Construct payload for optional parameters -->
         <script language="js">
             <![CDATA[
@@ -46,7 +43,7 @@
 			var subscribers = mc.getProperty("uri.var.subscribers");
 			var attachments = mc.getProperty("uri.var.attachments");
 			var content = mc.getProperty("uri.var.content");
-			
+
 			payload = mc.getPayloadJSON();
 			if (subscribers != null && subscribers != "") {
 				payload.subscribers = eval("(" + subscribers + ")");
@@ -57,10 +54,9 @@
 			if (content != null && content != "") {
 				payload.content = content;
 			}
-			mc.setPayloadJSON(payload);	
+			mc.setPayloadJSON(payload);
 		]]>
         </script>
-
         <!-- returns an error to user when received and invalid section type -->
         <filter source="get-property('uri.var.sectionType')" regex="(?!^(messages|todos)$).*">
             <then>
@@ -73,7 +69,6 @@
                         }
                     </format>
                 </payloadFactory>
-
                 <header name="Authorization" scope="transport" action="remove"/>
                 <header name="Status" scope="transport" action="remove"/>
                 <header name="Host" scope="transport" action="remove"/>
@@ -81,14 +76,12 @@
                 <respond></respond>
             </then>
         </filter>
-
         <call>
             <endpoint>
                 <http method="post"
                       uri-template="{+uri.var.apiUrl}/projects/{+uri.var.projectId}/{+uri.var.sectionType}/{+uri.var.sectionId}/comments.json"/>
             </endpoint>
         </call>
-
         <!-- Remove response custom header information -->
         <header name="X-Runtime" scope="transport" action="remove"/>
         <header name="X-XSS-Protection" scope="transport" action="remove"/>
@@ -100,6 +93,5 @@
         <header name="X-Asset-Paths" scope="transport" action="remove"/>
         <header name="WWW-Authenticate" scope="transport" action="remove"/>
         <header name="Location" scope="transport" action="remove"/>
-
     </sequence>
 </template>

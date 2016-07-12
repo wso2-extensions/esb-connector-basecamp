@@ -24,7 +24,6 @@
     <parameter name="startsAt" description="The starting time"/>
     <parameter name="endsAt" description="The ending time"/>
     <parameter name="remindsAt" description="The reminder time"/>
-
     <sequence>
         <property name="uri.var.containerType" expression="$func:containerType"/>
         <property name="uri.var.containerId" expression="$func:containerId"/>
@@ -34,14 +33,11 @@
         <property name="uri.var.startsAt" expression="$func:startsAt"/>
         <property name="uri.var.endsAt" expression="$func:endsAt"/>
         <property name="uri.var.remindsAt" expression="$func:remindsAt"/>
-
-
         <payloadFactory media-type="json">
             <format>
                 {}
             </format>
         </payloadFactory>
-
         <!-- Construct payload for optional parameters -->
         <script language="js">
             <![CDATA[
@@ -76,7 +72,6 @@
 				mc.setPayloadJSON(payload);	
 			]]>
         </script>
-
         <filter source="get-property('uri.var.containerType')" regex="(?!^(calendars|projects)$).*">
             <then>
                 <payloadFactory media-type="json">
@@ -88,7 +83,6 @@
                         }
                     </format>
                 </payloadFactory>
-
                 <header name="Authorization" scope="transport" action="remove"/>
                 <header name="Status" scope="transport" action="remove"/>
                 <header name="Host" scope="transport" action="remove"/>
@@ -96,14 +90,12 @@
                 <respond></respond>
             </then>
         </filter>
-
         <call>
             <endpoint>
                 <http method="post"
                       uri-template="{+uri.var.apiUrl}/{+uri.var.containerType}/{+uri.var.containerId}/calendar_events.json'"/>
             </endpoint>
         </call>
-
         <!-- Remove response custom header information -->
         <header name="X-Runtime" scope="transport" action="remove"/>
         <header name="X-XSS-Protection" scope="transport" action="remove"/>
@@ -115,6 +107,5 @@
         <header name="X-Asset-Paths" scope="transport" action="remove"/>
         <header name="WWW-Authenticate" scope="transport" action="remove"/>
         <header name="Location" scope="transport" action="remove"/>
-
     </sequence>
 </template>

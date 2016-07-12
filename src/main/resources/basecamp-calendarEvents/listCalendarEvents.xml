@@ -20,12 +20,10 @@
     <parameter name="id" description="The id of the respecive type"/>
     <parameter name="isPast"
                description="Past calender event or present calendar event - added in order to distinguish between endpoints"/>
-
     <sequence>
         <property name="uri.var.type" expression="$func:type"/>
         <property name="uri.var.id" expression="$func:id"/>
         <property name="uri.var.isPast" expression="$func:isPast"/>
-
         <!-- Changes the end points to get either project specific attachments or all of them depending on the presence of project
             Id -->
         <filter source="get-property('uri.var.type')" regex="projects">
@@ -38,20 +36,17 @@
                           expression="fn:concat(get-property('uri.var.apiUrl'), '/calendars/' ,get-property('uri.var.id'), '/calendar_events')"/>
             </else>
         </filter>
-
         <!-- adds optional query parameter, isPast -->
         <filter source="get-property('uri.var.isPast')" regex="true">
             <then>
                 <property name="uri.var.apiUrl" expression="fn:concat(get-property('uri.var.apiUrl'),'/past')"/>
             </then>
         </filter>
-
         <call>
             <endpoint>
                 <http method="get" uri-template="{+uri.var.apiUrl}.json"/>
             </endpoint>
         </call>
-
         <!-- Remove response custom header information -->
         <header name="X-Runtime" scope="transport" action="remove"/>
         <header name="X-XSS-Protection" scope="transport" action="remove"/>
@@ -63,6 +58,5 @@
         <header name="X-Asset-Paths" scope="transport" action="remove"/>
         <header name="WWW-Authenticate" scope="transport" action="remove"/>
         <header name="Location" scope="transport" action="remove"/>
-
     </sequence>
 </template>

@@ -87,7 +87,6 @@ public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBa
         esbRequestHeadersMap.put("Action", "urn:createProject");
         RestResponse<JSONObject> esbRestReponse =
                 sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "esb_createProject_mandatory.json");
-
         connectorProperties.put("projectId", esbRestReponse.getBody().get("id").toString());
         createTodoList();
 
@@ -103,7 +102,8 @@ public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBa
     /**
      * Positive test case for createProject method with optional parameters.
      */
-    @Test(priority = 1, dependsOnMethods = {"testCreateProjectWithMandatoryParameters"}, description = "Test createProject{BaseCamp} with optional parameters")
+    @Test(priority = 1, dependsOnMethods = {"testCreateProjectWithMandatoryParameters"},
+            description = "Test createProject{BaseCamp} with optional parameters")
     public void testCreateProjectWithOptionalParameters() throws Exception {
 
         esbRequestHeadersMap.put("Action", "urn:createProject");
@@ -116,14 +116,15 @@ public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBa
 
         Assert.assertEquals(esbReponse.getBody().getString("id"), apiReponse.getBody().getString("id"));
         Assert.assertEquals(esbReponse.getBody().getString("name"), apiReponse.getBody().getString("name"));
-        Assert.assertEquals(esbReponse.getBody().getString("description"), apiReponse.getBody()
-                .getString("description"));
+        Assert.assertEquals(esbReponse.getBody().getString("description"),
+                apiReponse.getBody().getString("description"));
     }
 
     /**
      * Negative test case for createProject method with invalid parameters.
      */
-    @Test(priority = 1, dependsOnMethods = {"testCreateProjectWithOptionalParameters"}, description = "Test createProject{BaseCamp} with negative case")
+    @Test(priority = 1, dependsOnMethods = {"testCreateProjectWithOptionalParameters"},
+            description = "Test createProject{BaseCamp} with negative case")
     public void testCreateProjectWithNegativeCase() throws Exception {
 
         esbRequestHeadersMap.put("Action", "urn:createProject");
@@ -142,7 +143,8 @@ public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBa
     /**
      * Positive test case for getProject method with mandatory parameters.
      */
-    @Test(priority = 1, dependsOnMethods = "testCreateProjectWithNegativeCase", description = "Test getProject{BaseCamp} with Mandatory Parameters")
+    @Test(priority = 1, dependsOnMethods = "testCreateProjectWithNegativeCase",
+            description = "Test getProject{BaseCamp} with Mandatory Parameters")
     public void testGetProjectWithMandatoryParameters() throws Exception {
 
         esbRequestHeadersMap.put("Action", "urn:getProject");
@@ -158,7 +160,8 @@ public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBa
     /**
      * Negative test case for getProject method with invalid parameters.
      */
-    @Test(priority = 1, dependsOnMethods = "testGetProjectWithMandatoryParameters", description = "Test getProject{BaseCamp} with negative case")
+    @Test(priority = 1, dependsOnMethods = "testGetProjectWithMandatoryParameters",
+            description = "Test getProject{BaseCamp} with negative case")
     public void testGetProjectWithNegativeCase() throws Exception {
 
         esbRequestHeadersMap.put("Action", "urn:getProject");
@@ -173,7 +176,8 @@ public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBa
     /**
      * Positive test case for listProjects method with mandatory parameters.
      */
-    @Test(priority = 1, dependsOnMethods = "testGetProjectWithNegativeCase", description = "Test listProjects{BaseCamp} with Mandatory Parameters")
+    @Test(priority = 1, dependsOnMethods = "testGetProjectWithNegativeCase",
+            description = "Test listProjects{BaseCamp} with Mandatory Parameters")
     public void testListProjectsWithMandatoryParameters() throws Exception {
 
         esbRequestHeadersMap.put("Action", "urn:listProjects");
@@ -184,16 +188,17 @@ public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBa
         JSONArray esbJsonArray = new JSONArray(esbReponse.getBody().getString("output"));
         JSONArray apiJsonArray = new JSONArray(apiReponse.getBody().getString("output"));
         Assert.assertEquals(esbJsonArray.length(), apiJsonArray.length());
-        Assert.assertEquals(esbJsonArray.getJSONObject(0).get("id").toString(), apiJsonArray.getJSONObject(0).get("id")
-                .toString());
-        Assert.assertEquals(esbJsonArray.getJSONObject(0).get("name").toString(), apiJsonArray.getJSONObject(0).get("name")
-                .toString());
+        Assert.assertEquals(esbJsonArray.getJSONObject(0).get("id").toString(),
+                apiJsonArray.getJSONObject(0).get("id").toString());
+        Assert.assertEquals(esbJsonArray.getJSONObject(0).get("name").toString(),
+                apiJsonArray.getJSONObject(0).get("name").toString());
     }
 
     /**
      * Positive test case for listProjects method with optional parameters.
      */
-    @Test(priority = 1, dependsOnMethods = "testListProjectsWithMandatoryParameters", description = "Test listProjects{BaseCamp} with Mandatory Parameters")
+    @Test(priority = 1, dependsOnMethods = "testListProjectsWithMandatoryParameters",
+            description = "Test listProjects{BaseCamp} with Mandatory Parameters")
     public void testListProjectsWithOptionalParameters() throws Exception {
 
         esbRequestHeadersMap.put("Action", "urn:listProjects");
@@ -204,16 +209,17 @@ public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBa
         JSONArray esbJsonArray = new JSONArray(esbReponse.getBody().getString("output"));
         JSONArray apiJsonArray = new JSONArray(apiReponse.getBody().getString("output"));
         Assert.assertEquals(esbJsonArray.length(), apiJsonArray.length());
-        Assert.assertEquals(esbJsonArray.getJSONObject(0).get("id").toString(), apiJsonArray.getJSONObject(0).get("id")
-                .toString());
-        Assert.assertEquals(esbJsonArray.getJSONObject(0).get("name").toString(), apiJsonArray.getJSONObject(0).get("name")
-                .toString());
+        Assert.assertEquals(esbJsonArray.getJSONObject(0).get("id").toString(),
+                apiJsonArray.getJSONObject(0).get("id").toString());
+        Assert.assertEquals(esbJsonArray.getJSONObject(0).get("name").toString(),
+                apiJsonArray.getJSONObject(0).get("name").toString());
     }
 
     /**
      * Positive test case for createCalendarEvent method with mandatory parameters.
      */
-    @Test(priority = 1, dependsOnMethods = {"testListProjectsWithOptionalParameters"}, description = "BaseCamp {createCalendarEvent} integration test with mandatory parameters.")
+    @Test(priority = 1, dependsOnMethods = {"testListProjectsWithOptionalParameters"},
+            description = "BaseCamp {createCalendarEvent} integration test with mandatory parameters.")
     public void testCreateCalendarEventWithMandatoryParameters() throws Exception {
 
         esbRequestHeadersMap.put("Action", "urn:createCalendarEvent");
@@ -231,13 +237,13 @@ public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBa
                 apiRestResponse.getBody().getString("description"));
         Assert.assertEquals(esbRestResponse.getBody().getString("all_day"),
                 apiRestResponse.getBody().getString("all_day"));
-
     }
 
     /**
      * Positive test case for createCalendarEvent method with optional parameters.
      */
-    @Test(priority = 1, dependsOnMethods = {"testCreateCalendarEventWithMandatoryParameters"}, description = "BaseCamp {createCalendarEvent} integration test with optional parameters.")
+    @Test(priority = 1, dependsOnMethods = {"testCreateCalendarEventWithMandatoryParameters"},
+            description = "BaseCamp {createCalendarEvent} integration test with optional parameters.")
     public void testCreateCalendarEventWithOptionalParameters() throws Exception {
 
         esbRequestHeadersMap.put("Action", "urn:createCalendarEvent");
@@ -262,7 +268,8 @@ public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBa
     /**
      * Negative test case for createCalendarEvent method.
      */
-    @Test(priority = 1, dependsOnMethods = {"testCreateCalendarEventWithOptionalParameters"}, description = "BaseCamp {createCalendarEvent} integration test case for negative case.")
+    @Test(priority = 1, dependsOnMethods = {"testCreateCalendarEventWithOptionalParameters"},
+            description = "BaseCamp {createCalendarEvent} integration test case for negative case.")
     public void testCreateCalendarEventWithNegativeCase() throws Exception {
 
         esbRequestHeadersMap.put("Action", "urn:createCalendarEvent");
@@ -280,7 +287,8 @@ public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBa
     /**
      * Positive test case for listCalendarEvents method with mandatory parameters.
      */
-    @Test(priority = 2, dependsOnMethods = {"testCreateCalendarEventWithNegativeCase"}, description = "BaseCamp {listCalendarEvents} integration test with mandatory parameters.")
+    @Test(priority = 2, dependsOnMethods = {"testCreateCalendarEventWithNegativeCase"},
+            description = "BaseCamp {listCalendarEvents} integration test with mandatory parameters.")
     public void testListCalendarEventsWithMandatoryParameters() throws IOException, JSONException {
 
         esbRequestHeadersMap.put("Action", "urn:listCalendarEvents");
@@ -298,13 +306,13 @@ public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBa
         org.json.JSONArray apiJsonAry = new org.json.JSONArray(apiResponse);
 
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
-
     }
 
     /**
      * Positive test case for listCalendarEvents method with optional parameters.
      */
-    @Test(priority = 2, dependsOnMethods = {"testListCalendarEventsWithMandatoryParameters"}, description = "BaseCamp {listCalendarEvents} integration test with optional parameters.")
+    @Test(priority = 2, dependsOnMethods = {"testListCalendarEventsWithMandatoryParameters"},
+            description = "BaseCamp {listCalendarEvents} integration test with optional parameters.")
     public void testListCalendarEventsWithOptionalParameters() throws IOException, JSONException {
 
         esbRequestHeadersMap.put("Action", "urn:listCalendarEvents");
@@ -322,13 +330,13 @@ public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBa
         org.json.JSONArray apiJsonAry = new org.json.JSONArray(apiResponse);
 
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
-
     }
 
     /**
      * Negative test case for listCalendarEvents method.
      */
-    @Test(priority = 2, dependsOnMethods = {"testListCalendarEventsWithOptionalParameters"}, description = "BaseCamp {listCalendarEvents} integration test case for negative case.")
+    @Test(priority = 2, dependsOnMethods = {"testListCalendarEventsWithOptionalParameters"},
+            description = "BaseCamp {listCalendarEvents} integration test case for negative case.")
     public void testListCalendarEventsWithNegativeCase() throws IOException, JSONException {
 
         esbRequestHeadersMap.put("Action", "urn:listCalendarEvents");
@@ -341,13 +349,13 @@ public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBa
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 404);
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 404);
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), apiRestResponse.getHttpStatusCode());
-
     }
 
     /**
      * Positive test case for getCalendarEvent method with mandatory parameters.
      */
-    @Test(priority = 1, dependsOnMethods = {"testListCalendarEventsWithNegativeCase"}, description = "Test getCalendarEvent{BaseCamp} with Mandatory Parameters")
+    @Test(priority = 1, dependsOnMethods = {"testListCalendarEventsWithNegativeCase"},
+            description = "Test getCalendarEvent{BaseCamp} with Mandatory Parameters")
     public void testGetCalendarEventWithMandatoryParameters() throws Exception {
 
         esbRequestHeadersMap.put("Action", "urn:getCalendarEvent");
@@ -365,7 +373,8 @@ public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBa
     /**
      * Negative test case for getCalendarEvent method with invalid parameters.
      */
-    @Test(priority = 1, dependsOnMethods = {"testGetCalendarEventWithMandatoryParameters"}, description = "Test getCalendarEvent{BaseCamp} with negative case")
+    @Test(priority = 1, dependsOnMethods = {"testGetCalendarEventWithMandatoryParameters"},
+            description = "Test getCalendarEvent{BaseCamp} with negative case")
     public void testGetCalendarEventWithNegativeCase() throws Exception {
 
         esbRequestHeadersMap.put("Action", "urn:getCalendarEvent");
@@ -381,7 +390,8 @@ public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBa
     /**
      * Positive test case for listPeople method with mandatory parameters.
      */
-    @Test(priority = 2, dependsOnMethods = {"testGetCalendarEventWithNegativeCase"}, description = "Basecamp {listPeople} integration test with mandatory parameters.")
+    @Test(priority = 2, dependsOnMethods = {"testGetCalendarEventWithNegativeCase"},
+            description = "Basecamp {listPeople} integration test with mandatory parameters.")
     public void testListPeopleWithMandatoryParameters() throws JSONException, IOException {
 
         esbRequestHeadersMap.put("Action", "urn:listPeople");
@@ -395,17 +405,18 @@ public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBa
         JSONArray esbJsonAry = new org.json.JSONArray(esbResponse);
         JSONArray apiJsonAry = new org.json.JSONArray(apiResponse);
         connectorProperties.put("personId", esbJsonAry.getJSONObject(0).get("id").toString());
-        Assert.assertEquals(esbJsonAry.getJSONObject(0).get("id").toString(), apiJsonAry.getJSONObject(0).get("id")
-                .toString());
-        Assert.assertEquals(esbJsonAry.getJSONObject(0).get("name").toString(), apiJsonAry.getJSONObject(0).get("name")
-                .toString());
+        Assert.assertEquals(esbJsonAry.getJSONObject(0).get("id").toString(),
+                apiJsonAry.getJSONObject(0).get("id").toString());
+        Assert.assertEquals(esbJsonAry.getJSONObject(0).get("name").toString(),
+                apiJsonAry.getJSONObject(0).get("name").toString());
         Assert.assertEquals(esbJsonAry.length(), apiJsonAry.length());
     }
 
     /**
      * Negative test case for listPeople method.
      */
-    @Test(priority = 2, dependsOnMethods = {"testListPeopleWithMandatoryParameters"}, description = "Basecamp {listPeople} integration test with negative case.")
+    @Test(priority = 2, dependsOnMethods = {"testListPeopleWithMandatoryParameters"},
+            description = "Basecamp {listPeople} integration test with negative case.")
     public void testListPeopleWithNegativeCase() throws JSONException, IOException {
 
         esbRequestHeadersMap.put("Action", "urn:listPeople");
@@ -420,7 +431,8 @@ public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBa
     /**
      * Positive test case for listTodoLists method with mandatory parameters.
      */
-    @Test(priority = 1, dependsOnMethods = "testListPeopleWithMandatoryParameters", description = "Test listTodoLists{BaseCamp} with Mandatory Parameters")
+    @Test(priority = 1, dependsOnMethods = "testListPeopleWithMandatoryParameters",
+            description = "Test listTodoLists{BaseCamp} with Mandatory Parameters")
     public void testListTodoListsWithMandatoryParameters() throws Exception {
 
         esbRequestHeadersMap.put("Action", "urn:listTodoLists");
@@ -432,17 +444,18 @@ public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBa
         JSONArray apiJsonArray = new JSONArray(apiReponse.getBody().getString("output"));
         Assert.assertEquals(esbReponse.getHttpStatusCode(), 200);
         Assert.assertEquals(esbJsonArray.length(), apiJsonArray.length());
-        Assert.assertEquals(esbJsonArray.getJSONObject(0).get("id").toString(), apiJsonArray.getJSONObject(0).get("id")
-                .toString());
-        Assert.assertEquals(esbJsonArray.getJSONObject(0).get("name").toString(), apiJsonArray.getJSONObject(0).get("name")
-                .toString());
+        Assert.assertEquals(esbJsonArray.getJSONObject(0).get("id").toString(),
+                apiJsonArray.getJSONObject(0).get("id").toString());
+        Assert.assertEquals(esbJsonArray.getJSONObject(0).get("name").toString(),
+                apiJsonArray.getJSONObject(0).get("name").toString());
 
     }
 
     /**
      * Positive test case for listTodoLists method with optional parameters.
      */
-    @Test(priority = 1, dependsOnMethods = {"testListTodoListsWithMandatoryParameters"}, description = "Test listTodoLists{BaseCamp} with optional parameters")
+    @Test(priority = 1, dependsOnMethods = {"testListTodoListsWithMandatoryParameters"},
+            description = "Test listTodoLists{BaseCamp} with optional parameters")
     public void testListTodoListsWithOptionalParameters() throws Exception {
 
         esbRequestHeadersMap.put("Action", "urn:listTodoLists");
@@ -455,16 +468,17 @@ public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBa
         JSONArray apiJsonArray = new JSONArray(apiReponse.getBody().getString("output"));
         Assert.assertEquals(esbReponse.getHttpStatusCode(), 200);
         Assert.assertEquals(esbJsonArray.length(), apiJsonArray.length());
-        Assert.assertEquals(esbJsonArray.getJSONObject(0).get("id").toString(), apiJsonArray.getJSONObject(0).get("id")
-                .toString());
-        Assert.assertEquals(esbJsonArray.getJSONObject(0).get("name").toString(), apiJsonArray.getJSONObject(0).get("name")
-                .toString());
+        Assert.assertEquals(esbJsonArray.getJSONObject(0).get("id").toString(),
+                apiJsonArray.getJSONObject(0).get("id").toString());
+        Assert.assertEquals(esbJsonArray.getJSONObject(0).get("name").toString(),
+                apiJsonArray.getJSONObject(0).get("name").toString());
     }
 
     /**
      * Negative test case for listTodoLists method with invalid parameters.
      */
-    @Test(priority = 1, dependsOnMethods = {"testListTodoListsWithOptionalParameters"}, description = "Test listTodoLists{BaseCamp} with negative case")
+    @Test(priority = 1, dependsOnMethods = {"testListTodoListsWithOptionalParameters"},
+            description = "Test listTodoLists{BaseCamp} with negative case")
     public void testListTodoListsWithNegativeCase() throws Exception {
 
         esbRequestHeadersMap.put("Action", "urn:listTodoLists");
@@ -479,7 +493,8 @@ public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBa
     /**
      * Positive test case for createMessage method with mandatory parameters.
      */
-    @Test(priority = 2, dependsOnMethods = {"testListTodoListsWithNegativeCase"}, description = "Basecamp {createMessage} integration test with mandatory parameters.")
+    @Test(priority = 2, dependsOnMethods = {"testListTodoListsWithNegativeCase"},
+            description = "Basecamp {createMessage} integration test with mandatory parameters.")
     public void testCreateMessageMandatoryParameters() throws JSONException, IOException {
 
         esbRequestHeadersMap.put("Action", "urn:createMessage");
@@ -491,14 +506,15 @@ public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBa
                         + connectorProperties.getProperty("messageId") + ".json";
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndpoint, "GET", apiRequestHeadersMap);
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 201);
-        Assert.assertEquals(apiRestResponse.getBody().get("id").toString(), connectorProperties
-                .getProperty("messageId").toString());
+        Assert.assertEquals(apiRestResponse.getBody().get("id").toString(),
+                connectorProperties.getProperty("messageId").toString());
     }
 
     /**
      * Positive test case for createMessage method with optional parameters.
      */
-    @Test(priority = 2, dependsOnMethods = {"testCreateMessageMandatoryParameters"}, description = "Basecamp {createMessage} integration test with optional parameters.")
+    @Test(priority = 2, dependsOnMethods = {"testCreateMessageMandatoryParameters"},
+            description = "Basecamp {createMessage} integration test with optional parameters.")
     public void testCreateMessageOptionalParameters() throws JSONException, IOException {
 
         esbRequestHeadersMap.put("Action", "urn:createMessage");
@@ -510,14 +526,15 @@ public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBa
                         + connectorProperties.getProperty("messageId") + ".json";
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndpoint, "GET", apiRequestHeadersMap);
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 201);
-        Assert.assertEquals(apiRestResponse.getBody().get("id").toString(), connectorProperties
-                .getProperty("messageId").toString());
+        Assert.assertEquals(apiRestResponse.getBody().get("id").toString(),
+                connectorProperties.getProperty("messageId").toString());
     }
 
     /**
      * Negative test case for createMessage method.
      */
-    @Test(priority = 2, dependsOnMethods = {"testCreateMessageOptionalParameters"}, description = "Basecamp {createMessage} integration test negative case.")
+    @Test(priority = 2, dependsOnMethods = {"testCreateMessageOptionalParameters"},
+            description = "Basecamp {createMessage} integration test negative case.")
     public void testCreateMessageNegativeCase() throws JSONException, IOException {
 
         esbRequestHeadersMap.put("Action", "urn:createMessage");
@@ -533,7 +550,8 @@ public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBa
     /**
      * Positive test case for getMessage method with mandatory parameters.
      */
-    @Test(priority = 2, dependsOnMethods = {"testCreateMessageNegativeCase"}, description = "Basecamp {getMessage} integration test with mandatory parameters.")
+    @Test(priority = 2, dependsOnMethods = {"testCreateMessageNegativeCase"},
+            description = "Basecamp {getMessage} integration test with mandatory parameters.")
     public void testGetMessageWithMandatoryParameters() throws JSONException, IOException {
 
         esbRequestHeadersMap.put("Action", "urn:getMessage");
@@ -548,13 +566,13 @@ public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBa
                 .toString());
         Assert.assertEquals(apiRestResponse.getBody().get("created_at").toString(),
                 esbRestResponse.getBody().get("created_at").toString());
-
     }
 
     /**
      * Negative test case for getMessage method
      */
-    @Test(priority = 2, dependsOnMethods = {"testGetMessageWithMandatoryParameters"}, description = "Basecamp {getMessage} integration test case for negative case.")
+    @Test(priority = 2, dependsOnMethods = {"testGetMessageWithMandatoryParameters"},
+            description = "Basecamp {getMessage} integration test case for negative case.")
     public void testGetMessageWithNegativeCase() throws JSONException, IOException {
 
         esbRequestHeadersMap.put("Action", "urn:getMessage");
@@ -566,13 +584,13 @@ public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBa
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndpoint, "GET", apiRequestHeadersMap);
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 404);
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 404);
-
     }
 
     /**
      * Positive test case for createTodo method with mandatory parameters.
      */
-    @Test(priority = 2, dependsOnMethods = {"testGetMessageWithNegativeCase"}, description = "Basecamp {createTodo} integration test with mandatory parameters.")
+    @Test(priority = 2, dependsOnMethods = {"testGetMessageWithNegativeCase"},
+            description = "Basecamp {createTodo} integration test with mandatory parameters.")
     public void testCreateTodoWithMandatoryParameters() throws IOException, JSONException {
 
         esbRequestHeadersMap.put("Action", "urn:createTodo");
@@ -597,7 +615,8 @@ public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBa
     /**
      * Positive test case for createTodo method with optional parameters.
      */
-    @Test(priority = 2, dependsOnMethods = {"testCreateTodoWithMandatoryParameters"}, description = "Basecamp {createTodo} integration test with optional parameters.")
+    @Test(priority = 2, dependsOnMethods = {"testCreateTodoWithMandatoryParameters"},
+            description = "Basecamp {createTodo} integration test with optional parameters.")
     public void testCreateTodoWithOptionalParameters() throws IOException, JSONException {
 
         esbRequestHeadersMap.put("Action", "urn:createTodo");
@@ -613,16 +632,17 @@ public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBa
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
 
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 201);
-        Assert.assertEquals(esbRestResponse.getBody().getString("content").toString(), apiRestResponse.getBody()
-                .getString("content").toString());
-        Assert.assertEquals(esbRestResponse.getBody().getString("due_at").toString(), apiRestResponse.getBody()
-                .getString("due_at").toString());
+        Assert.assertEquals(esbRestResponse.getBody().getString("content").toString(),
+                apiRestResponse.getBody().getString("content").toString());
+        Assert.assertEquals(esbRestResponse.getBody().getString("due_at").toString(),
+                apiRestResponse.getBody().getString("due_at").toString());
     }
 
     /**
      * Negative test case for createTodo method.
      */
-    @Test(priority = 2, dependsOnMethods = {"testCreateTodoWithOptionalParameters"}, description = "Basecamp {createTodo} integration test case for negative case.")
+    @Test(priority = 2, dependsOnMethods = {"testCreateTodoWithOptionalParameters"},
+            description = "Basecamp {createTodo} integration test case for negative case.")
     public void testCreateTodoWithNegativeCase() throws IOException, JSONException {
 
         esbRequestHeadersMap.put("Action", "urn:createTodo");
@@ -638,14 +658,15 @@ public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBa
 
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 422);
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 422);
-        Assert.assertEquals(esbRestResponse.getBody().getJSONArray("content").get(0), apiRestResponse.getBody()
-                .getJSONArray("content").get(0));
+        Assert.assertEquals(esbRestResponse.getBody().getJSONArray("content").get(0),
+                apiRestResponse.getBody().getJSONArray("content").get(0));
     }
 
     /**
      * Positive test case for getTodo method with mandatory parameters.
      */
-    @Test(priority = 2, dependsOnMethods = {"testCreateTodoWithNegativeCase"}, description = "Basecamp {getTodo} integration test with mandatory parameters.")
+    @Test(priority = 2, dependsOnMethods = {"testCreateTodoWithNegativeCase"},
+            description = "Basecamp {getTodo} integration test with mandatory parameters.")
     public void testGetTodoWithMandatoryParameters() throws IOException, JSONException {
 
         esbRequestHeadersMap.put("Action", "urn:getTodo");
@@ -668,7 +689,8 @@ public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBa
     /**
      * Negative test case for getTodo method.
      */
-    @Test(priority = 2, dependsOnMethods = {"testGetTodoWithMandatoryParameters"}, description = "Basecamp {getTodo} integration test for Negative case.")
+    @Test(priority = 2, dependsOnMethods = {"testGetTodoWithMandatoryParameters"},
+            description = "Basecamp {getTodo} integration test for Negative case.")
     public void testGetTodoWithNegativeCase() throws IOException, JSONException {
 
         esbRequestHeadersMap.put("Action", "urn:getTodo");
@@ -685,7 +707,8 @@ public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBa
     /**
      * Positive test case for createAttachment method with mandatory parameters.
      */
-    @Test(priority = 2, dependsOnMethods = {"testGetTodoWithNegativeCase"}, description = "Basecamp {createAttachment} integration test with mandatory parameters.")
+    @Test(priority = 2, dependsOnMethods = {"testGetTodoWithNegativeCase"},
+            description = "Basecamp {createAttachment} integration test with mandatory parameters.")
     public void testCreateAttachmentWithMandatoryParameters() throws IOException, JSONException {
 
         binaryUploadProxyUrl +=
@@ -731,7 +754,8 @@ public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBa
     /**
      * Negative test case for createAttachment method.
      */
-    @Test(priority = 2, dependsOnMethods = {"testCreateAttachmentWithMandatoryParameters"}, description = "Basecamp {createAttachment} integration test for Negative case.")
+    @Test(priority = 2, dependsOnMethods = {"testCreateAttachmentWithMandatoryParameters"},
+            description = "Basecamp {createAttachment} integration test for Negative case.")
     public void testCreateAttachmentWithNegativeCase() throws IOException, JSONException {
 
         binaryUploadProxyUrl += "?apiUrl=" + connectorProperties.getProperty("apiUrl") + "&accountId=0";
@@ -764,7 +788,8 @@ public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBa
     /**
      * Positive test case for listAttachments method with mandatory parameters.
      */
-    @Test(priority = 2, dependsOnMethods = {"testCreateAttachmentWithNegativeCase"}, description = "Basecamp {listAttachments} integration test with mandatory parameters.")
+    @Test(priority = 2, dependsOnMethods = {"testCreateAttachmentWithNegativeCase"},
+            description = "Basecamp {listAttachments} integration test with mandatory parameters.")
     public void testListAttachmentsWithMandatoryParameters() throws IOException, JSONException, InterruptedException {
 
         Thread.sleep(SLEEP_TIME);
@@ -784,17 +809,17 @@ public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBa
 
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
         Assert.assertEquals(esbJsonAry.length(), apiJsonAry.length());
-        Assert.assertEquals(esbJsonAry.getJSONObject(0).get("id").toString(), apiJsonAry.getJSONObject(0).get("id")
-                .toString());
-        Assert.assertEquals(esbJsonAry.getJSONObject(0).get("name").toString(), apiJsonAry.getJSONObject(0).get("name")
-                .toString());
-
+        Assert.assertEquals(esbJsonAry.getJSONObject(0).get("id").toString(),
+                apiJsonAry.getJSONObject(0).get("id").toString());
+        Assert.assertEquals(esbJsonAry.getJSONObject(0).get("name").toString(),
+                apiJsonAry.getJSONObject(0).get("name").toString());
     }
 
     /**
      * Positive test case for listAttachments method with optional parameters.
      */
-    @Test(priority = 2, dependsOnMethods = {"testListAttachmentsWithMandatoryParameters"}, description = "Basecamp {listAttachments} integration test with optional parameters.")
+    @Test(priority = 2, dependsOnMethods = {"testListAttachmentsWithMandatoryParameters"},
+            description = "Basecamp {listAttachments} integration test with optional parameters.")
     public void testListAttachmentsWithOptionalParameters() throws IOException, JSONException {
 
         esbRequestHeadersMap.put("Action", "urn:listAttachments");
@@ -813,13 +838,13 @@ public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBa
 
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
         Assert.assertEquals(esbJsonAry.length(), apiJsonAry.length());
-
     }
 
     /**
      * Negative test case for listAttachments method.
      */
-    @Test(priority = 2, dependsOnMethods = {"testListAttachmentsWithOptionalParameters"}, description = "Basecamp {listAttachments} integration test with negative case.")
+    @Test(priority = 2, dependsOnMethods = {"testListAttachmentsWithOptionalParameters"},
+            description = "Basecamp {listAttachments} integration test with negative case.")
     public void testListAttachmentsWithNegativeCase() throws IOException, JSONException {
 
         esbRequestHeadersMap.put("Action", "urn:listAttachments");
@@ -832,13 +857,13 @@ public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBa
 
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 404);
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 404);
-
     }
 
     /**
      * Positive test case for grantAccess method with mandatory parameters.
      */
-    @Test(priority = 2, dependsOnMethods = {"testListAttachmentsWithNegativeCase"}, description = "Basecamp {grantAccess} integration test with mandatory parameters.")
+    @Test(priority = 2, dependsOnMethods = {"testListAttachmentsWithNegativeCase"},
+            description = "Basecamp {grantAccess} integration test with mandatory parameters.")
     public void testGrantAccessWithMandatoryParameters() throws IOException, JSONException {
 
         esbRequestHeadersMap.put("Action", "urn:grantAccess");
@@ -853,13 +878,13 @@ public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBa
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 204);
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 204);
         Assert.assertNull(esbRestResponse.getBody());
-
     }
 
     /**
      * Positive test case for grantAccess method with optional parameters.
      */
-    @Test(priority = 2, dependsOnMethods = {"testGrantAccessWithMandatoryParameters"}, description = "Basecamp {grantAccess} integration test with optional parameters.")
+    @Test(priority = 2, dependsOnMethods = {"testGrantAccessWithMandatoryParameters"},
+            description = "Basecamp {grantAccess} integration test with optional parameters.")
     public void testGrantAccessWithOptionalParameters() throws IOException, JSONException, InterruptedException {
 
         Thread.sleep(SLEEP_TIME);
@@ -875,13 +900,13 @@ public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBa
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 204);
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 204);
         Assert.assertNull(esbRestResponse.getBody());
-
     }
 
     /**
      * Negative test case for grantAccess method.
      */
-    @Test(priority = 2, dependsOnMethods = {"testGrantAccessWithOptionalParameters"}, description = "Basecamp {grantAccess} integration test with negative case.")
+    @Test(priority = 2, dependsOnMethods = {"testGrantAccessWithOptionalParameters"},
+            description = "Basecamp {grantAccess} integration test with negative case.")
     public void testGrantAccessWithNegativeCase() throws IOException, JSONException, InterruptedException {
 
         Thread.sleep(SLEEP_TIME);
@@ -896,13 +921,13 @@ public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBa
 
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 404);
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 404);
-
     }
 
     /**
      * Positive test case for createUploads method with mandatory parameters.
      */
-    @Test(priority = 2, dependsOnMethods = {"testGrantAccessWithNegativeCase"}, description = "Basecamp {createUploads} integration test with mandatory parameters.")
+    @Test(priority = 2, dependsOnMethods = {"testGrantAccessWithNegativeCase"},
+            description = "Basecamp {createUploads} integration test with mandatory parameters.")
     public void testCreateUploadsWithMandatoryParameters() throws IOException, JSONException {
 
         esbRequestHeadersMap.put("Action", "urn:createUploads");
@@ -922,13 +947,13 @@ public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBa
                 apiRestResponse.getBody().get("private").toString());
         Assert.assertEquals(esbRestResponse.getBody().get("trashed").toString(),
                 apiRestResponse.getBody().get("trashed").toString());
-
     }
 
     /**
      * Positive test case for createUploads method with optional parameters.
      */
-    @Test(priority = 2, dependsOnMethods = {"testCreateUploadsWithMandatoryParameters"}, description = "Basecamp {createUploads} integration test with optional parameters.")
+    @Test(priority = 2, dependsOnMethods = {"testCreateUploadsWithMandatoryParameters"},
+            description = "Basecamp {createUploads} integration test with optional parameters.")
     public void testCreateUploadsWithOptionalParameters() throws IOException, JSONException {
 
         esbRequestHeadersMap.put("Action", "urn:createUploads");
@@ -953,7 +978,8 @@ public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBa
     /**
      * Negative test case for createUploads method.
      */
-    @Test(priority = 2, dependsOnMethods = {"testCreateUploadsWithOptionalParameters"}, description = "Basecamp {createUploads} integration test with negative case.")
+    @Test(priority = 2, dependsOnMethods = {"testCreateUploadsWithOptionalParameters"},
+            description = "Basecamp {createUploads} integration test with negative case.")
     public void testCreateUploadsWithNegativeCase() throws IOException, JSONException {
 
         esbRequestHeadersMap.put("Action", "urn:createUploads");
@@ -967,14 +993,15 @@ public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBa
 
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 422);
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 422);
-        Assert.assertEquals(esbRestResponse.getBody().get("error").toString(), apiRestResponse.getBody().get("error")
-                .toString());
+        Assert.assertEquals(esbRestResponse.getBody().get("error").toString(),
+                apiRestResponse.getBody().get("error").toString());
     }
 
     /**
      * Positive test case for getUpload method with mandatory parameters.
      */
-    @Test(priority = 2, dependsOnMethods = {"testCreateUploadsWithNegativeCase"}, description = "Basecamp {getUpload} integration test with mandatory parameters.")
+    @Test(priority = 2, dependsOnMethods = {"testCreateUploadsWithNegativeCase"},
+            description = "Basecamp {getUpload} integration test with mandatory parameters.")
     public void testGetUploadWithMandatoryParameters() throws IOException, JSONException {
 
         esbRequestHeadersMap.put("Action", "urn:getUpload");
@@ -993,13 +1020,13 @@ public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBa
                 apiRestResponse.getBody().get("private").toString());
         Assert.assertEquals(esbRestResponse.getBody().get("trashed").toString(),
                 apiRestResponse.getBody().get("trashed").toString());
-
     }
 
     /**
      * Negative test case for getUpload method.
      */
-    @Test(priority = 2, dependsOnMethods = {"testGetUploadWithMandatoryParameters"}, description = "Basecamp {getUpload} integration test case for negative case.")
+    @Test(priority = 2, dependsOnMethods = {"testGetUploadWithMandatoryParameters"},
+            description = "Basecamp {getUpload} integration test case for negative case.")
     public void testGetUploadWithNegativeCase() throws IOException, JSONException {
 
         esbRequestHeadersMap.put("Action", "urn:getUpload");
@@ -1012,13 +1039,13 @@ public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBa
 
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 404);
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 404);
-
     }
 
     /**
      * Positive test case for listTopics method with mandatory parameters.
      */
-    @Test(priority = 2, dependsOnMethods = {"testGetUploadWithNegativeCase"}, description = "Basecamp {listTopics} integration test with mandatory parameters.")
+    @Test(priority = 2, dependsOnMethods = {"testGetUploadWithNegativeCase"},
+            description = "Basecamp {listTopics} integration test with mandatory parameters.")
     public void testListTopicsWithMandatoryParameters() throws IOException, JSONException {
 
         esbRequestHeadersMap.put("Action", "urn:listTopics");
@@ -1038,14 +1065,15 @@ public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBa
         Assert.assertEquals(esbJsonAry.length(), apiJsonAry.length());
         Assert.assertEquals(esbJsonAry.getJSONObject(0).get("id").toString(), apiJsonAry.getJSONObject(0).get("id")
                 .toString());
-        Assert.assertEquals(esbJsonAry.getJSONObject(0).get("created_at").toString(), apiJsonAry.getJSONObject(0).get("created_at")
-                .toString());
+        Assert.assertEquals(esbJsonAry.getJSONObject(0).get("created_at").toString(),
+                apiJsonAry.getJSONObject(0).get("created_at").toString());
     }
 
     /**
      * Positive test case for listTopics method with optional parameters.
      */
-    @Test(priority = 2, dependsOnMethods = {"testListTopicsWithMandatoryParameters"}, description = "Basecamp {listTopics} integration test with optional parameters.")
+    @Test(priority = 2, dependsOnMethods = {"testListTopicsWithMandatoryParameters"},
+            description = "Basecamp {listTopics} integration test with optional parameters.")
     public void testListTopicsWithOptionalParameters() throws IOException, JSONException {
 
         esbRequestHeadersMap.put("Action", "urn:listTopics");
@@ -1063,16 +1091,17 @@ public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBa
 
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
         Assert.assertEquals(esbJsonAry.length(), apiJsonAry.length());
-        Assert.assertEquals(esbJsonAry.getJSONObject(0).get("id").toString(), apiJsonAry.getJSONObject(0).get("id")
-                .toString());
-        Assert.assertEquals(esbJsonAry.getJSONObject(0).get("created_at").toString(), apiJsonAry.getJSONObject(0).get("created_at")
-                .toString());
+        Assert.assertEquals(esbJsonAry.getJSONObject(0).get("id").toString(),
+                apiJsonAry.getJSONObject(0).get("id").toString());
+        Assert.assertEquals(esbJsonAry.getJSONObject(0).get("created_at").toString(),
+                apiJsonAry.getJSONObject(0).get("created_at").toString());
     }
 
     /**
      * Negative test case for listTopics method with optional parameters.
      */
-    @Test(priority = 2, dependsOnMethods = {"testListTopicsWithOptionalParameters"}, description = "Basecamp {listTopics} integration test case for negative case .")
+    @Test(priority = 2, dependsOnMethods = {"testListTopicsWithOptionalParameters"},
+            description = "Basecamp {listTopics} integration test case for negative case .")
     public void testListTopicsNegativeCase() throws IOException, JSONException {
 
         esbRequestHeadersMap.put("Action", "urn:listTopics");
@@ -1089,7 +1118,8 @@ public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBa
     /**
      * Positive test case for listTodoListsAssignedTodos method with mandatory parameters.
      */
-    @Test(priority = 2, dependsOnMethods = {"testListTopicsNegativeCase"}, description = "Basecamp {listTodoListsAssignedTodos} integration test with mandatory parameters.")
+    @Test(priority = 2, dependsOnMethods = {"testListTopicsNegativeCase"},
+            description = "Basecamp {listTodoListsAssignedTodos} integration test with mandatory parameters.")
     public void testListTodoListsAssignedTodosWithMandatoryParameters() throws IOException, JSONException {
 
         esbRequestHeadersMap.put("Action", "urn:listTodoListsAssignedTodos");
@@ -1113,7 +1143,8 @@ public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBa
     /**
      * Negative test case for listTodoListsAssignedTodos method with negative case.
      */
-    @Test(priority = 2, dependsOnMethods = {"testListTodoListsAssignedTodosWithMandatoryParameters"}, description = "Basecamp {listTodoListsAssignedTodos} integration test case with negative case.")
+    @Test(priority = 2, dependsOnMethods = {"testListTodoListsAssignedTodosWithMandatoryParameters"},
+            description = "Basecamp {listTodoListsAssignedTodos} integration test case with negative case.")
     public void testListTodoListsAssignedTodosWithNegativeCase() throws IOException, JSONException {
 
         esbRequestHeadersMap.put("Action", "urn:listTodoListsAssignedTodos");
@@ -1131,7 +1162,8 @@ public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBa
     /**
      * Positive test case for starProject method.
      */
-    @Test(priority = 2, dependsOnMethods = {"testListTodoListsAssignedTodosWithNegativeCase"}, description = "Basecamp {starProject} integration test with mandatory parameters.")
+    @Test(priority = 2, dependsOnMethods = {"testListTodoListsAssignedTodosWithNegativeCase"},
+            description = "Basecamp {starProject} integration test with mandatory parameters.")
     public void testStarProjectMandatoryParameters() throws IOException, JSONException {
 
         esbRequestHeadersMap.put("Action", "urn:starProject");
@@ -1149,7 +1181,8 @@ public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBa
     /**
      * Negative test case for starProject method.
      */
-    @Test(priority = 2, dependsOnMethods = {"testStarProjectMandatoryParameters"}, description = "Basecamp {starProject} integration test case with negative case.")
+    @Test(priority = 2, dependsOnMethods = {"testStarProjectMandatoryParameters"},
+            description = "Basecamp {starProject} integration test case with negative case.")
     public void testStarProjectWithNegativeCase() throws IOException, JSONException {
 
         esbRequestHeadersMap.put("Action", "urn:starProject");
@@ -1167,7 +1200,8 @@ public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBa
     /**
      * Positive test case for listStars method with mandatory parameters.
      */
-    @Test(priority = 2, dependsOnMethods = {"testStarProjectWithNegativeCase"}, description = "Basecamp {listStars} integration test with mandatory parameters.")
+    @Test(priority = 2, dependsOnMethods = {"testStarProjectWithNegativeCase"},
+            description = "Basecamp {listStars} integration test with mandatory parameters.")
     public void testListStarsWithMandatoryParameters() throws IOException, JSONException {
 
         esbRequestHeadersMap.put("Action", "urn:listStars");
@@ -1185,16 +1219,17 @@ public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBa
 
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
         Assert.assertEquals(esbJsonAry.length(), apiJsonAry.length());
-        Assert.assertEquals(esbJsonAry.getJSONObject(0).get("project_id").toString(), apiJsonAry.getJSONObject(0).get("project_id")
-                .toString());
-        Assert.assertEquals(esbJsonAry.getJSONObject(0).get("created_at").toString(), apiJsonAry.getJSONObject(0).get("created_at")
-                .toString());
+        Assert.assertEquals(esbJsonAry.getJSONObject(0).get("project_id").toString(),
+                apiJsonAry.getJSONObject(0).get("project_id").toString());
+        Assert.assertEquals(esbJsonAry.getJSONObject(0).get("created_at").toString(),
+                apiJsonAry.getJSONObject(0).get("created_at").toString());
     }
 
     /**
      * Negative test case for listStars method.
      */
-    @Test(priority = 2, dependsOnMethods = {"testListStarsWithMandatoryParameters"}, description = "Basecamp {listStars} integration test with Negative case.")
+    @Test(priority = 2, dependsOnMethods = {"testListStarsWithMandatoryParameters"},
+            description = "Basecamp {listStars} integration test with Negative case.")
     public void testListStarsWithNegativeCase() throws IOException, JSONException {
 
         esbRequestHeadersMap.put("Action", "urn:listStars");
@@ -1211,7 +1246,8 @@ public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBa
     /**
      * Positive test case for listGlobalEvents method with mandatory parameters.
      */
-    @Test(priority = 1, dependsOnMethods = {"testListStarsWithNegativeCase"}, description = "Test listGlobalEvents{BaseCamp} with Mandatory Parameters")
+    @Test(priority = 1, dependsOnMethods = {"testListStarsWithNegativeCase"},
+            description = "Test listGlobalEvents{BaseCamp} with Mandatory Parameters")
     public void testListGlobalEventsWithMandatoryParameters() throws Exception {
 
         esbRequestHeadersMap.put("Action", "urn:listGlobalEvents");
@@ -1222,17 +1258,17 @@ public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBa
         JSONArray apiJsonArray = new JSONArray(apiReponse.getBody().getString("output"));
         Assert.assertEquals(esbReponse.getHttpStatusCode(), 200);
         Assert.assertEquals(esbJsonArray.length(), apiJsonArray.length());
-        Assert.assertEquals(esbJsonArray.getJSONObject(0).get("id").toString(), apiJsonArray.getJSONObject(0).get("id")
-                .toString());
-        Assert.assertEquals(esbJsonArray.getJSONObject(0).get("created_at").toString(), apiJsonArray.getJSONObject(0).get("created_at")
-                .toString());
-
+        Assert.assertEquals(esbJsonArray.getJSONObject(0).get("id").toString(),
+                apiJsonArray.getJSONObject(0).get("id").toString());
+        Assert.assertEquals(esbJsonArray.getJSONObject(0).get("created_at").toString(),
+                apiJsonArray.getJSONObject(0).get("created_at").toString());
     }
 
     /**
      * Positive test case for listGlobalEvents method with optional parameters.
      */
-    @Test(priority = 1, dependsOnMethods = {"testListGlobalEventsWithMandatoryParameters"}, description = "Test listGlobalEvents{BaseCamp} with Mandatory Parameters")
+    @Test(priority = 1, dependsOnMethods = {"testListGlobalEventsWithMandatoryParameters"},
+            description = "Test listGlobalEvents{BaseCamp} with Mandatory Parameters")
     public void testListGlobalEventsWithOptionalParameters() throws Exception {
 
         esbRequestHeadersMap.put("Action", "urn:listGlobalEvents");
@@ -1252,7 +1288,8 @@ public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBa
     /**
      * Negative test case for listGlobalEvents method.
      */
-    @Test(priority = 1, dependsOnMethods = {"testListGlobalEventsWithOptionalParameters"}, description = "Test listGlobalEvents{BaseCamp} with Negative case")
+    @Test(priority = 1, dependsOnMethods = {"testListGlobalEventsWithOptionalParameters"},
+            description = "Test listGlobalEvents{BaseCamp} with Negative case")
     public void testListGlobalEventsWithNegativeCase() throws Exception {
 
         esbRequestHeadersMap.put("Action", "urn:listGlobalEvents");
@@ -1271,7 +1308,8 @@ public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBa
      *
      * @throws Exception
      */
-    @Test(priority = 1, dependsOnMethods = {"testListGlobalEventsWithNegativeCase"}, description = "Test createComment{BaseCamp} with Mandatory Parameters")
+    @Test(priority = 1, dependsOnMethods = {"testListGlobalEventsWithNegativeCase"},
+            description = "Test createComment{BaseCamp} with Mandatory Parameters")
     public void testCreateCommentWithMandatoryParameters() throws Exception {
 
         esbRequestHeadersMap.put("Action", "urn:createComment");
@@ -1296,7 +1334,6 @@ public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBa
         Assert.assertEquals(apiReponse.getBody().getJSONArray("comments").getJSONObject(noOfComments - 1)
                 .getJSONObject("creator").getString("avatar_url"), esbReponse.getBody().getJSONObject("creator")
                 .getString("avatar_url"));
-
     }
 
     /**
@@ -1304,7 +1341,8 @@ public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBa
      *
      * @throws Exception
      */
-    @Test(priority = 1, dependsOnMethods = {"testCreateCommentWithMandatoryParameters"}, description = "Test createComment{BaseCamp} with optional parameters")
+    @Test(priority = 1, dependsOnMethods = {"testCreateCommentWithMandatoryParameters"},
+            description = "Test createComment{BaseCamp} with optional parameters")
     public void testCreateCommentWithOptionalParameters() throws Exception {
 
         esbRequestHeadersMap.put("Action", "urn:createComment");
@@ -1324,7 +1362,8 @@ public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBa
      *
      * @throws Exception
      */
-    @Test(priority = 1, dependsOnMethods = {"testCreateCommentWithOptionalParameters"}, description = "Test createComment{BaseCamp} with negative case")
+    @Test(priority = 1, dependsOnMethods = {"testCreateCommentWithOptionalParameters"},
+            description = "Test createComment{BaseCamp} with negative case")
     public void testCreateCommentWithNegativeCase() throws Exception {
 
         esbRequestHeadersMap.put("Action", "urn:createComment");
@@ -1340,5 +1379,4 @@ public class BasecampConnectorIntegrationTest extends ConnectorIntegrationTestBa
         Assert.assertEquals(esbReponse.getHttpStatusCode(), 400);
         Assert.assertEquals(apiReponse.getHttpStatusCode(), 400);
     }
-
 }
