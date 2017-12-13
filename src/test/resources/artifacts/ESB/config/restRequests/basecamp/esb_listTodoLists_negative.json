@@ -2,5 +2,6 @@
   "apiUrl": "%s(apiUrl)",
   "accessToken": "%s(accessToken)",
   "accountId": "%s(accountId)",
-  "projectId": "INVALID"
+  "projectId": "%s(projectId)",
+  "todoSetId": "INVALID"
 }

@@ -3,5 +3,8 @@
   "accessToken": "%s(accessToken)",
   "accountId": "%s(accountId)",
   "projectId": "%s(projectId)",
-  "subjects": "sample subject"
+  "messageBoardId": "%s(messageBoardId)",
+  "status": "%s(status)",
+  "subject": "%s(subject)",
+  "content": "%s(content)"
 }

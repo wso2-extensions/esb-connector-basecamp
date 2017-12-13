@@ -1,0 +1,9 @@
+{
+  "apiUrl": "%s(apiUrl)",
+  "accessToken": "%s(accessToken)",
+  "accountId": "%s(accountId)",
+  "projectId": "%s(projectId)",
+  "todoListId": "Invalid",
+  "name": "Update Name",
+  "description": "Update description"
+}

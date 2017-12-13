@@ -2,6 +2,6 @@
   "apiUrl": "%s(apiUrl)",
   "accessToken": "%s(accessToken)",
   "accountId": "%s(accountId)",
-  "projectId": "-",
-  "messageId": "%s(messageId)"
+  "projectId": "%s(projectId)",
+  "messageId": "INVALID"
 }

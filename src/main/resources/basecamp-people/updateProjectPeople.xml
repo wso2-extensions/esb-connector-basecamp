@@ -1,0 +1,70 @@
+<!--
+ ~  Copyright (c) 2017, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+ ~
+ ~  WSO2 Inc. licenses this file to you under the Apache License,
+ ~  Version 2.0 (the "License"); you may not use this file except
+ ~  in compliance with the License.
+ ~  You may obtain a copy of the License at
+ ~
+ ~    http://www.apache.org/licenses/LICENSE-2.0
+ ~
+ ~  Unless required by applicable law or agreed to in writing,
+ ~  software distributed under the License is distributed on an
+ ~  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ ~  KIND, either express or implied.  See the License for the
+ ~  specific language governing permissions and limitations
+ ~  under the License.
+-->
+<template name="updateProjectPeople" xmlns="http://ws.apache.org/ns/synapse">
+    <parameter name="projectId" description="Project ID which is associated with the project"/>
+    <parameter name="grant" description="An array of existing people ID to allows granting access to a project"/>
+    <parameter name="revoke" description="An array of existing people ID to revoking access to a project"/>
+    <parameter name="create" description="An array of new people details to allows granting access to a project"/>
+    <sequence>
+        <property name="uri.var.projectId" expression="$func:projectId"/>
+        <property name="uri.var.grant" expression="$func:grant"/>
+        <property name="uri.var.revoke" expression="$func:revoke"/>
+        <property name="uri.var.create" expression="$func:create"/>
+        <payloadFactory media-type="json">
+            <format>
+                {
+                }
+            </format>
+        </payloadFactory>
+        <script language="js">
+            <![CDATA[
+			//payload variables
+			var grant = mc.getProperty("uri.var.grant");
+			var revoke = mc.getProperty("uri.var.revoke");
+			var create = mc.getProperty("uri.var.create");
+			payload = mc.getPayloadJSON();
+            if (grant != null && grant != "") {
+				payload.grant = eval("(" + grant + ")");
+			}
+			if (revoke != null && revoke != "") {
+				payload.revoke = eval("(" + revoke + ")");
+			}
+			if (create != null && create != "") {
+				payload.create = eval("(" + create + ")");
+			}
+			mc.setPayloadJSON(payload);
+		]]>
+        </script>
+        <call>
+            <endpoint>
+                <http method="put" uri-template="{uri.var.apiUrl}/projects/{uri.var.projectId}/people/users.json"/>
+            </endpoint>
+        </call>
+        <!-- Remove response custom header information -->
+        <header name="X-Runtime" scope="transport" action="remove"/>
+        <header name="X-XSS-Protection" scope="transport" action="remove"/>
+        <header name="X-Request-Id" scope="transport" action="remove"/>
+        <header name="X-Queue-Time" scope="transport" action="remove"/>
+        <header name="X-Content-Type-Options" scope="transport" action="remove"/>
+        <header name="X-Frame-Options" scope="transport" action="remove"/>
+        <header name="Timing-Allow-Origin" scope="transport" action="remove"/>
+        <header name="X-Asset-Paths" scope="transport" action="remove"/>
+        <header name="WWW-Authenticate" scope="transport" action="remove"/>
+        <header name="Location" scope="transport" action="remove"/>
+    </sequence>
+</template>

@@ -22,9 +22,17 @@
             <file>listTodoLists.xml</file>
             <description>Retrieves todo lists that are actived/completed/project-specific/all projects</description>
         </component>
-        <component name="listTodoListsAssignedTodos">
-            <file>listTodoListsAssignedTodos.xml</file>
-            <description>Returns all todolists with todos assigned to the specified person</description>
+        <component name="createTodoLists">
+            <file>createTodoLists.xml</file>
+            <description>Creates a to-do list in the project</description>
+        </component>
+        <component name="getTodoLists">
+            <file>getTodoLists.xml</file>
+            <description>Get the detail of a specific to do list</description>
+        </component>
+        <component name="updateTodoLists">
+            <file>updateTodoLists.xml</file>
+            <description>Update a to-do list in the project</description>
         </component>
     </subComponents>
 </component>

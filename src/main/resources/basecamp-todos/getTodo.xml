@@ -24,7 +24,7 @@
         <call>
             <endpoint>
                 <http method="get"
-                      uri-template="{+uri.var.apiUrl}/projects/{+uri.var.projectId}/todos/{+uri.var.todoId}.json"/>
+                      uri-template="{uri.var.apiUrl}/buckets/{uri.var.projectId}/todos/{uri.var.todoId}.json"/>
             </endpoint>
         </call>
         <!-- Remove response custom header information -->

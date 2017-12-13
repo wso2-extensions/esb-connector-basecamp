@@ -33,32 +33,21 @@
             <property name="dueDate" expression="json-eval($.dueDate)"/>
             <property name="assignee" expression="json-eval($.assignee)"/>
             <property name="todoId" expression="json-eval($.todoId)"/>
-            <property name="page" expression="json-eval($.page)"/>
-            <property name="sort" expression="json-eval($.sort)"/>
-            <property name="idList" expression="json-eval($.idList)"/>
-            <property name="emailList" expression="json-eval($.emailList)"/>
-            <property name="attachments" expression="json-eval($.attachments)"/>
-            <property name="subscribers" expression="json-eval($.subscribers)"/>
-            <property name="uploadId" expression="json-eval($.uploadId)"/>
             <property name="personId" expression="json-eval($.personId)"/>
             <property name="subject" expression="json-eval($.subject)"/>
             <property name="messageId" expression="json-eval($.messageId)"/>
-            <property name="isArchived" expression="json-eval($.isArchived)"/>
-            <property name="isComplete" expression="json-eval($.isComplete)"/>
-            <property name="sectionType" expression="json-eval($.sectionType)"/>
-            <property name="sectionId" expression="json-eval($.sectionId)"/>
+            <property name="todoSetId" expression="json-eval($.todoSetId)"/>
             <property name="since" expression="json-eval($.since)"/>
             <property name="type" expression="json-eval($.type)"/>
-            <property name="id" expression="json-eval($.id)"/>
-            <property name="calendarEventId" expression="json-eval($.calendarEventId)"/>
-            <property name="containerId" expression="json-eval($.containerId)"/>
-            <property name="containerType" expression="json-eval($.containerType)"/>
-            <property name="summary" expression="json-eval($.summary)"/>
-            <property name="isAllDay" expression="json-eval($.isAllDay)"/>
-            <property name="startsAt" expression="json-eval($.startsAt)"/>
-            <property name="endsAt" expression="json-eval($.endsAt)"/>
-            <property name="remindsAt" expression="json-eval($.remindsAt)"/>
-            <property name="isPast" expression="json-eval($.isPast)"/>
+            <property name="status" expression="json-eval($.status)"/>
+            <property name="messageBoardId" expression="json-eval($.messageBoardId)"/>
+            <property name="categoryId" expression="json-eval($.categoryId)"/>
+            <property name="startDate" expression="json-eval($.startDate)"/>
+            <property name="notify" expression="json-eval($.notify)"/>
+            <property name="recordingId" expression="json-eval($.recordingId)"/>
+            <property name="grant" expression="json-eval($.grant)"/>
+            <property name="revoke" expression="json-eval($.revoke)"/>
+            <property name="create" expression="json-eval($.create)"/>
             <basecamp.init>
                 <accessToken>{$ctx:accessToken}</accessToken>
                 <apiUrl>{$ctx:apiUrl}</apiUrl>
@@ -79,64 +68,68 @@
                 </case>
                 <case regex="urn:listProjects">
                     <basecamp.listProjects>
-                        <isArchived>{$ctx:isArchived}</isArchived>
+                        <status>{$ctx:status}</status>
                     </basecamp.listProjects>
+                </case>
+                <case regex="urn:updateProject">
+                    <basecamp.updateProject>
+                        <projectId>{$ctx:projectId}</projectId>
+                        <name>{$ctx:name}</name>
+                        <description>{$ctx:description}</description>
+                    </basecamp.updateProject>
                 </case>
                 <case regex="urn:createComment">
                     <basecamp.createComment>
                         <content>{$ctx:content}</content>
-                        <sectionId>{$ctx:sectionId}</sectionId>
-                        <sectionType>{$ctx:sectionType}</sectionType>
-                        <subscribers>{$ctx:subscribers}</subscribers>
+                        <recordingId>{$ctx:recordingId}</recordingId>
                         <projectId>{$ctx:projectId}</projectId>
-                        <attachments>{$ctx:attachments}</attachments>
                     </basecamp.createComment>
+                </case>
+                <case regex="urn:createTodoLists">
+                    <basecamp.createTodoLists>
+                        <todoSetId>{$ctx:todoSetId}</todoSetId>
+                        <projectId>{$ctx:projectId}</projectId>
+                        <name>{$ctx:name}</name>
+                        <description>{$ctx:description}</description>
+                    </basecamp.createTodoLists>
+                </case>
+                <case regex="urn:getTodoLists">
+                    <basecamp.getTodoLists>
+                        <todoListId>{$ctx:todoListId}</todoListId>
+                        <projectId>{$ctx:projectId}</projectId>
+                    </basecamp.getTodoLists>
+                </case>
+                <case regex="urn:updateTodoLists">
+                    <basecamp.updateTodoLists>
+                        <todoListId>{$ctx:todoListId}</todoListId>
+                        <projectId>{$ctx:projectId}</projectId>
+                        <name>{$ctx:name}</name>
+                        <description>{$ctx:description}</description>
+                    </basecamp.updateTodoLists>
                 </case>
                 <case regex="urn:listTodoLists">
                     <basecamp.listTodoLists>
-                        <isComplete>{$ctx:isComplete}</isComplete>
+                        <todoSetId>{$ctx:todoSetId}</todoSetId>
                         <projectId>{$ctx:projectId}</projectId>
+                        <status>{$ctx:status}</status>
                     </basecamp.listTodoLists>
                 </case>
-                <case regex="urn:listGlobalEvents">
-                    <basecamp.listGlobalEvents>
-                        <page>{$ctx:page}</page>
-                        <since>{$ctx:since}</since>
-                    </basecamp.listGlobalEvents>
-                </case>
-                <case regex="urn:getCalendarEvent">
-                    <basecamp.getCalendarEvent>
-                        <id>{$ctx:id}</id>
-                        <calendarEventId>{$ctx:calendarEventId}</calendarEventId>
-                        <type>{$ctx:type}</type>
-                    </basecamp.getCalendarEvent>
-                </case>
-                <case regex="urn:createCalendarEvent">
-                    <basecamp.createCalendarEvent>
-                        <containerType>{$ctx:containerType}</containerType>
-                        <containerId>{$ctx:containerId}</containerId>
-                        <summary>{$ctx:summary}</summary>
-                        <description>{$ctx:description}</description>
-                        <isAllDay>{$ctx:isAllDay}</isAllDay>
-                        <startsAt>{$ctx:startsAt}</startsAt>
-                        <endsAt>{$ctx:endsAt}</endsAt>
-                        <remindsAt>{$ctx:remindsAt}</remindsAt>
-                    </basecamp.createCalendarEvent>
-                </case>
-                <case regex="urn:listCalendarEvents">
-                    <basecamp.listCalendarEvents>
-                        <id>{$ctx:id}</id>
-                        <type>{$ctx:type}</type>
-                        <isPast>{$ctx:isPast}</isPast>
-                    </basecamp.listCalendarEvents>
+                <case regex="urn:getEvents">
+                    <basecamp.getEvents>
+                        <recordingId>{$ctx:recordingId}</recordingId>
+                        <projectId>{$ctx:projectId}</projectId>
+                    </basecamp.getEvents>
                 </case>
                 <case regex="urn:createTodo">
                     <basecamp.createTodo>
                         <projectId>{$ctx:projectId}</projectId>
                         <todoListId>{$ctx:todoListId}</todoListId>
                         <content>{$ctx:content}</content>
+                        <description>{$ctx:description}</description>
                         <dueDate>{$ctx:dueDate}</dueDate>
                         <assignee>{$ctx:assignee}</assignee>
+                        <notify>{$ctx:notify}</notify>
+                        <startDate>{$ctx:startDate}</startDate>
                     </basecamp.createTodo>
                 </case>
                 <case regex="urn:getTodo">
@@ -145,63 +138,37 @@
                         <projectId>{$ctx:projectId}</projectId>
                     </basecamp.getTodo>
                 </case>
-                <case regex="urn:listAttachments">
-                    <basecamp.listAttachments>
-                        <page>{$ctx:page}</page>
+                <case regex="urn:updateTodo">
+                    <basecamp.updateTodo>
+                        <todoId>{$ctx:todoId}</todoId>
                         <projectId>{$ctx:projectId}</projectId>
-                        <sort>{$ctx:sort}</sort>
-                    </basecamp.listAttachments>
-                </case>
-                <case regex="urn:grantAccess">
-                    <basecamp.grantAccess>
-                        <projectId>{$ctx:projectId}</projectId>
-                        <idList>{$ctx:idList}</idList>
-                        <emailList>{$ctx:emailList}</emailList>
-                    </basecamp.grantAccess>
-                </case>
-                <case regex="urn:createUploads">
-                    <basecamp.createUploads>
                         <content>{$ctx:content}</content>
-                        <subscribers>{$ctx:subscribers}</subscribers>
-                        <attachments>{$ctx:attachments}</attachments>
-                        <projectId>{$ctx:projectId}</projectId>
-                    </basecamp.createUploads>
-                </case>
-                <case regex="urn:getUpload">
-                    <basecamp.getUpload>
-                        <uploadId>{$ctx:uploadId}</uploadId>
-                        <projectId>{$ctx:projectId}</projectId>
-                    </basecamp.getUpload>
-                </case>
-                <case regex="urn:listTopics">
-                    <basecamp.listTopics>
-                        <page>{$ctx:page}</page>
-                        <projectId>{$ctx:projectId}</projectId>
-                    </basecamp.listTopics>
-                </case>
-                <case regex="urn:listTodoListsAssignedTodos">
-                    <basecamp.listTodoListsAssignedTodos>
-                        <personId>{$ctx:personId}</personId>
-                    </basecamp.listTodoListsAssignedTodos>
-                </case>
-                <case regex="urn:starProject">
-                    <basecamp.starProject>
-                        <projectId>{$ctx:projectId}</projectId>
-                    </basecamp.starProject>
-                </case>
-                <case regex="urn:listStars">
-                    <basecamp.listStars/>
+                    </basecamp.updateTodo>
                 </case>
                 <case regex="urn:listPeople">
                     <basecamp.listPeople/>
                 </case>
+                <case regex="urn:getProjectPeople">
+                    <basecamp.getProjectPeople>
+                        <projectId>{$ctx:projectId}</projectId>
+                    </basecamp.getProjectPeople>
+                </case>
+                <case regex="urn:updateProjectPeople">
+                    <basecamp.updateProjectPeople>
+                        <projectId>{$ctx:projectId}</projectId>
+                        <grant>{$ctx:grant}</grant>
+                        <revoke>{$ctx:revoke}</revoke>
+                        <create>{$ctx:create}</create>
+                    </basecamp.updateProjectPeople>
+                </case>
                 <case regex="urn:createMessage">
                     <basecamp.createMessage>
-                        <content>{$ctx:content}</content>
                         <subject>{$ctx:subject}</subject>
-                        <attachments>{$ctx:attachments}</attachments>
-                        <subscribers>{$ctx:subscribers}</subscribers>
+                        <messageBoardId>{$ctx:messageBoardId}</messageBoardId>
+                        <status>{$ctx:status}</status>
                         <projectId>{$ctx:projectId}</projectId>
+                        <content>{$ctx:content}</content>
+                        <categoryId>{$ctx:categoryId}</categoryId>
                     </basecamp.createMessage>
                 </case>
                 <case regex="urn:getMessage">
@@ -209,6 +176,15 @@
                         <projectId>{$ctx:projectId}</projectId>
                         <messageId>{$ctx:messageId}</messageId>
                     </basecamp.getMessage>
+                </case>
+                <case regex="urn:updateMessage">
+                    <basecamp.updateMessage>
+                        <projectId>{$ctx:projectId}</projectId>
+                        <messageId>{$ctx:messageId}</messageId>
+                        <subject>{$ctx:subject}</subject>
+                        <content>{$ctx:content}</content>
+                        <categoryId>{$ctx:categoryId}</categoryId>
+                    </basecamp.updateMessage>
                 </case>
             </switch>
             <respond/>

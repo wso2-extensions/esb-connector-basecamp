@@ -3,5 +3,6 @@
   "accessToken": "%s(accessToken)",
   "accountId": "%s(accountId)",
   "projectId": "%s(projectId)",
-  "isComplete": false
+  "todoSetId": "%s(todoSetId)",
+  "status": "%s(status)"
 }

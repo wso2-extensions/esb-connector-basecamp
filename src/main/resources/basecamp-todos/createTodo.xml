@@ -21,15 +21,21 @@
     <parameter name="todoListId"
                description="The to do List identifier to create the to do on"/>
     <parameter name="content" description="The content of the to do"/>
+    <parameter name="description" description="The description of the to do"/>
     <parameter name="dueDate" description="The due Date of the to do"/>
     <parameter name="assignee"
-               description="The assignee, an JSON object containing the person id and type"/>
+               description="An array of people Id that will be assigned to this to-do"/>
+    <parameter name="notify" description="when set to true, will notify the assignees about being assigned."/>
+    <parameter name="startDate" description="The start Date of the to do"/>
     <sequence>
         <property name="uri.var.projectId" expression="$func:projectId"/>
         <property name="uri.var.todoListId" expression="$func:todoListId"/>
         <property name="uri.var.content" expression="$func:content"/>
+        <property name="uri.var.description" expression="$func:description"/>
         <property name="uri.var.dueDate" expression="$func:dueDate"/>
         <property name="uri.var.assignee" expression="$func:assignee"/>
+        <property name="uri.var.notify" expression="$func:notify"/>
+        <property name="uri.var.startDate" expression="$func:startDate"/>
         <payloadFactory media-type="json">
             <format>
                 {
@@ -44,16 +50,28 @@
         <script language="js">
             <![CDATA[
 				//payload variables
+				var description = mc.getProperty("uri.var.description");
 				var dueDate = mc.getProperty("uri.var.dueDate");
 				var assignee = mc.getProperty("uri.var.assignee");
+				var notify = mc.getProperty("uri.var.notify");
+				var startDate = mc.getProperty("uri.var.startDate");
 				
 				payload = mc.getPayloadJSON();
-			
+
+				if (description != null && description != "") {
+					payload.description = description;
+				}
 				if (dueDate != null && dueDate != "") {
-					payload.due_at = dueDate;
+					payload.due_on = dueDate;
 				}
 				if (assignee != null && assignee != "") {
-					payload.assignee = eval("(" + assignee + ")");
+					payload.assignee_ids = eval("(" + assignee + ")");
+					if (notify != null && notify != "") {
+					    payload.notify = notify;
+				    }
+				}
+				if (startDate != null && startDate != "") {
+					payload.starts_on = startDate;
 				}
 				mc.setPayloadJSON(payload);
 			]]>
@@ -61,7 +79,7 @@
         <call>
             <endpoint>
                 <http method="post"
-                      uri-template="{+uri.var.apiUrl}/projects/{+uri.var.projectId}/todolists/{+uri.var.todoListId}/todos.json"/>
+                      uri-template="{uri.var.apiUrl}/buckets/{uri.var.projectId}/todolists/{uri.var.todoListId}/todos.json"/>
             </endpoint>
         </call>
         <!-- Remove response custom header information -->

@@ -1,0 +1,95 @@
+<!--
+ ~  Copyright (c) 2017, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+ ~
+ ~  WSO2 Inc. licenses this file to you under the Apache License,
+ ~  Version 2.0 (the "License"); you may not use this file except
+ ~  in compliance with the License.
+ ~  You may obtain a copy of the License at
+ ~
+ ~    http://www.apache.org/licenses/LICENSE-2.0
+ ~
+ ~  Unless required by applicable law or agreed to in writing,
+ ~  software distributed under the License is distributed on an
+ ~  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ ~  KIND, either express or implied.  See the License for the
+ ~  specific language governing permissions and limitations
+ ~  under the License.
+-->
+<template name="updateTodo" xmlns="http://ws.apache.org/ns/synapse">
+    <parameter name="projectId"
+               description="The project identifier to which the to do will be created"/>
+    <parameter name="todoId"
+               description="The todo identifier"/>
+    <parameter name="content" description="The content of the to do"/>
+    <parameter name="description" description="The description of the to do"/>
+    <parameter name="dueDate" description="The due Date of the to do"/>
+    <parameter name="assignee"
+               description="An array of people Id that will be assigned to this to-do"/>
+    <parameter name="notify" description="when set to true, will notify the assignees about being assigned."/>
+    <parameter name="startDate" description="The start Date of the to do"/>
+    <sequence>
+        <property name="uri.var.projectId" expression="$func:projectId"/>
+        <property name="uri.var.todoId" expression="$func:todoId"/>
+        <property name="uri.var.content" expression="$func:content"/>
+        <property name="uri.var.description" expression="$func:description"/>
+        <property name="uri.var.dueDate" expression="$func:dueDate"/>
+        <property name="uri.var.assignee" expression="$func:assignee"/>
+        <property name="uri.var.notify" expression="$func:notify"/>
+        <property name="uri.var.startDate" expression="$func:startDate"/>
+        <payloadFactory media-type="json">
+            <format>
+                {
+                }
+            </format>
+        </payloadFactory>
+        <script language="js">
+            <![CDATA[
+				//payload variables
+				var content = mc.getProperty("uri.var.content");
+				var description = mc.getProperty("uri.var.description");
+				var dueDate = mc.getProperty("uri.var.dueDate");
+				var assignee = mc.getProperty("uri.var.assignee");
+				var notify = mc.getProperty("uri.var.notify");
+				var startDate = mc.getProperty("uri.var.startDate");
+
+				payload = mc.getPayloadJSON();
+                if (content != null && content != "") {
+					payload.content = content;
+				}
+				if (description != null && description != "") {
+					payload.description = description;
+				}
+				if (dueDate != null && dueDate != "") {
+					payload.due_on = dueDate;
+				}
+				if (assignee != null && assignee != "") {
+					payload.assignee_ids = eval("(" + assignee + ")");
+					if (notify != null && notify != "") {
+					    payload.notify = notify;
+				    }
+				}
+				if (startDate != null && startDate != "") {
+					payload.starts_on = startDate;
+				}
+				mc.setPayloadJSON(payload);
+			]]>
+        </script>
+        <call>
+            <endpoint>
+                <http method="put"
+                      uri-template="{uri.var.apiUrl}/buckets/{uri.var.projectId}/todos/{uri.var.todoId}.json"/>
+            </endpoint>
+        </call>
+        <!-- Remove response custom header information -->
+        <header name="X-Runtime" scope="transport" action="remove"/>
+        <header name="X-XSS-Protection" scope="transport" action="remove"/>
+        <header name="X-Request-Id" scope="transport" action="remove"/>
+        <header name="X-Queue-Time" scope="transport" action="remove"/>
+        <header name="X-Content-Type-Options" scope="transport" action="remove"/>
+        <header name="X-Frame-Options" scope="transport" action="remove"/>
+        <header name="Timing-Allow-Origin" scope="transport" action="remove"/>
+        <header name="X-Asset-Paths" scope="transport" action="remove"/>
+        <header name="WWW-Authenticate" scope="transport" action="remove"/>
+        <header name="Location" scope="transport" action="remove"/>
+    </sequence>
+</template>
