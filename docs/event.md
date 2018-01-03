@@ -1,22 +1,22 @@
 # Working with Events in Basecamp
 
-[[  Overview ]](#overview)  [[ Operation details ]](#operation-details)  [[  Sample configuration  ]](#sample-configuration)
+[[Overview]](#overview)  [[Operation details]](#operation-details)  [[Sample configuration]](#sample-configuration)
 
 ### Overview 
 
-The following operation allows you to work with events. Click an operation name to see details on how to use it.
+The following operation allows you to work with events. Click the operation name to see details on how to use it.
 For a sample proxy service that illustrates how to work with events, see [Sample configuration](#sample-configuration).
 
 | Operation        | Description |
 | ------------- |-------------|
-| [getEvents](#retrieving-events)    | Retrieving events|
+| [getEvents](#retrieving-events)    | Retrieves events |
 
 ### Operation details
 
-This section provides more details on each of the operations.
+This section provides more details on the operation.
 
 #### Retrieving events
-All actions in Basecamp, such as starting a new to-do list, add a new todo, or adding a comment, generate an event for the progress log. The getEvents operation returns all the events of the recording (e.g- recording : message, todo List, todo ). 
+In Basecamp, all actions such as starting a new to-do list, adding a new to-do, or adding a comment can generate an event in the progress log. The getEvents operation retrieves all events related to a specified recording. 
 
 **getEvents**
 ```xml
@@ -27,8 +27,9 @@ All actions in Basecamp, such as starting a new to-do list, add a new todo, or a
 ```
 
 **Properties**
-* recordingId: The identifier of recording. The recording can be a message, todo List, todo and document.
-* projectId: The project identifier to which the comment will be added (When click a project, You can find the projectId in basecamp URL. The URL is structured like :"https://<i></i>3.basecamp.com/**accountId**/projects/**projectId**").
+* recordingId: The identifier of the recording to retrieve related events. A recording can either be a message, a to-do list, a to-do or a document.
+* projectId: The identifier of the project from which you want to retrieve events.
+> NOTE: You can find the projectId in the Basecamp project URL. A Basecamp project URL is generally structured as follows:"https://<i></i>3.basecamp.com/**accountId**/projects/**projectId**”.
 
 **Sample request**
 
@@ -48,9 +49,9 @@ Following is a sample REST request that can be handled by the getEvents operatio
 
 [https://github.com/basecamp/bc3-api/blob/master/sections/events.md#get-events](https://github.com/basecamp/bc3-api/blob/master/sections/events.md#get-events)
 
-#### Sample configuration
+### Sample configuration
 
-Following is a sample proxy service that illustrates how to connect to Basecamp with the init operation and use the getEvents operation. The sample request for this proxy can be found in getEvents sample request.
+Following is a sample proxy service that illustrates how to connect to Basecamp with the init operation, and then use the getEvents operation. The sample request for this proxy can be found in the getEvents sample request.
 
 **Sample Proxy**
 ```xml
@@ -81,3 +82,4 @@ Following is a sample proxy service that illustrates how to connect to Basecamp 
   </target>
 </proxy> 
 ```
+
