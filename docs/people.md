@@ -1,24 +1,24 @@
 # Working with People in Basecamp
 
-[[  Overview ]](#overview)  [[ Operation details ]](#operation-details)  [[  Sample configuration  ]](#sample-configuration)
+[[Overview]](#overview)  [[Operation details]](#operation-details)  [[Sample configuration]](#sample-configuration)
 
 ### Overview 
 
 The following operations allow you to work with people. Click an operation name to see details on how to use it.
-For a sample proxy service that illustrates how to work with messages, see [Sample configuration](#sample-configuration).
+For a sample proxy service that illustrates how to work with people, see [Sample configuration](#sample-configuration).
 
 | Operation        | Description |
 | ------------- |-------------|
-| [listPeople](#listing-people)    | Retrieves all people in the account|
-| [getProjectPeople](#retrieving-people-on-a-project)    | Retrieves all active people on the project|
-| [updateProjectPeople](#updating-people-on-a-project)    | Allows granting new and existing people access to a project, revoking access from people|
+| [listPeople](#retrieving-details-of-people-in-an-account)    | Retrieves details of all people in an account|
+| [getProjectPeople](#retrieving-details-of-people-in-a-project)    | Retrieves details of all active people in a project|
+| [updateProjectPeople](#updating-permission-of-people-on-a-project)    | Updates user permission to a project |
 
 ### Operation details
 
 This section provides more details on each of the operations.
 
-####  Listing People
-The listPeople operation allows you to return all people visible to the current user. It does not take any properties.
+####  Retrieving details of people in an account
+The listPeople operation retrieves details of all people in an account. This information can be retrieved only by the account owner and the operation does not require any properties to be specified.
 
 **listPeople**
 ```xml
@@ -41,8 +41,8 @@ Following is a sample REST request that can be handled by the listPeople operati
 
 https://github.com/basecamp/bc3-api/blob/master/sections/people.md#get-all-people
 
-#### Retrieving people on a project
-The getProjectPeople operation returns all active people on the project.
+#### Retrieving details of people in a project
+The getProjectPeople operation retrieves details of all active people in a specified project.
 
 **getProjectPeople**
 
@@ -53,11 +53,12 @@ The getProjectPeople operation returns all active people on the project.
 ```
 
 **Properties**
-* projectId: The identifier of the project from which the people will be retrieved.
+* projectId: The identifier of the project for which you want to retrieve details of actively working people.
+
 
 **Sample request**
 
-Following is a sample REST request that can be handled by the getMessage operation.
+Following is a sample REST request that can be handled by the getProjectPeople operation.
 
 ```json
 {
@@ -72,8 +73,8 @@ Following is a sample REST request that can be handled by the getMessage operati
 
 https://github.com/basecamp/bc3-api/blob/master/sections/people.md#get-people-on-a-project
 
-#### Updating people on a project
-The updateProjectPeople operation allows granting new and existing people access to a project, and revoking access from existing people.
+#### Updating permission of people on a project
+The updateProjectPeople operation allows granting people permission to access a project and also allows revoking access permission of people to a project.
 
 **updateProjectPeople**
 ```xml
@@ -86,10 +87,11 @@ The updateProjectPeople operation allows granting new and existing people access
 ```
 
 **Properties**
-* projectId: The identifier of the project.
-* grant: An array of execting people IDs to grant permission to access the project.
-* revoke: An array of execting people IDs to revoking the access .
-* create: An array of new people IDs to grant permission to access the project.
+* projectId: The identifier of the project for which you want to update user permission.
+* grant: An array of IDs of existing people to grant permission to access the project.
+* revoke: An array of IDs of existing people to revoke permission to access the project.
+* create: An array of the name and email address of new people to grant permission to access the project. 
+> NOTE: If necessary you can specify the title and company name properties in the array as well . Specifying those properties are optional.
 
 **Sample request**
 
@@ -110,7 +112,7 @@ Following is a sample REST request that can be handled by the updateProjectPeopl
 
 https://github.com/basecamp/bc3-api/blob/master/sections/people.md#update-who-can-access-a-project
 
-#### Sample configuration
+### Sample configuration
 
 Following is a sample proxy service that illustrates how to connect to Basecamp with the init operation and use the listPeople operation. The sample request for this proxy can be found in listPeople sample request.
 
