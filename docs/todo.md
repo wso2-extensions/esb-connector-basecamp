@@ -1,24 +1,24 @@
-# Working with To-do's in Basecamp
+# Working with To-do Items in Basecamp
 
-[[  Overview ]](#overview)  [[ Operation details ]](#operation-details)  [[  Sample configuration  ]](#sample-configuration)
+[[Overview]](#overview)  [[Operation details]](#operation-details)  [[Sample configuration]](#sample-configuration)
 
 ### Overview 
 
-The following operations allow you to work with to-do's. Click an operation name to see details on how to use it.
-For a sample proxy service that illustrates how to work with to-do's, see [Sample configuration](#sample-configuration).
+The following operations allow you to work with to-do items. Click an operation name to see details on how to use it.
+For a sample proxy service that illustrates how to work with to-do items, see [Sample configuration](#sample-configuration).
 
 | Operation        | Description |
 | ------------- |-------------|
-| [createTodo](#creating-a-todo)    | Creates a to-do|
-| [getTodo](#retrieving-a-todo)    | Retrieves a to-do|
-| [updateTodo](#updating-a-todo)    | Updates a to-do|
+| [createTodo](#creating-a-to-do)    | Creates a to-do item|
+| [getTodo](#retrieving-a-to-do)    | Retrieves a to-do item|
+| [updateTodo](#updating-a-to-do)    | Updates a to-do item|
 
 ### Operation details
 
 This section provides more details on each of the operations.
 
-#### Creating a todo
-The createTodo operation adds a new to-do to the specified to-do list from the parameters passed.
+#### Creating a to-do
+The createTodo operation adds a new to-do item to a particular to-do list based on the properties that you specify.
 
 **createTodo**
 ```xml
@@ -35,14 +35,14 @@ The createTodo operation adds a new to-do to the specified to-do list from the p
 ```
 
 **Properties**
-* projectId: The identifier of the project in which the to-do will be created.
-* todoListId: The identifier of the to-do list where the to-do will be created.
-* content: The content of the to-do.
-* description[optional]: The description of the to-do.
-* dueDate[optional]: The due date of the to-do.
-* assignee[optional]: An array of people Id that will be assigned to this to-do.
-* notify[optional]: when set to true, will notify the assignees about being assigned.
-* startDate[optional]: The start date of the to-do.
+* projectId: The identifier of the project in which the to-do item should be created.
+* todoListId: The identifier of the to-do list where the to-do item should be created.
+* content: The content of the to-do item.
+* description: Optional - The description of the to-do item.
+* dueDate: Optional - The due date of the to-do item.
+* assignee: Optional - An array of IDs of people you want to assign to the to-do item.
+* notify: Optional - Set this to true if you want to notify assignees that they are assigned to the created to-do item.
+* startDate: Optional - The start date of the to-do item.
 
 **Sample request**
 
@@ -68,9 +68,9 @@ Following is a sample REST request that can be handled by the createTodo operati
 
 https://github.com/basecamp/bc3-api/blob/master/sections/todos.md#create-a-to-do
 
-#### Retrieving a todo
+#### Retrieving a to-do
 
-The getTodo operation retrieves a specified to-do.
+The getTodo operation retrieves a to-do item based on the properties that you specify.
 
 **getTodo**
 ```xml
@@ -81,8 +81,8 @@ The getTodo operation retrieves a specified to-do.
 ```
 
 **Properties**
-* todoId: The ID of the to-do to retrieve.
-* projectId: The ID of the project containing the to-do.
+* todoId: The identifier of the to-do item that you want to retrieve.
+* projectId: The identifier of the project where the to-do item to be retrieved exists.
 
 **Sample request**
 
@@ -93,8 +93,8 @@ Following is a sample REST request that can be handled by the getTodo operation.
     "apiUrl": "https://3.basecampapi.com",
     "accessToken": "BAhbByIBsHsidmVyc2lvbiI6MSwidXNlcl9pZHMiOlsyMTDg13LTA0VDA3OjM2OjMxWiJ9dToJVGltZQ2HmBzAqS77kQ==--1fb2c32e4d904b7960b77d5e81db7c6666dee01c2",
     "accountId": "2669154",
-    "projectId":"6224144",
-    "todoId":"108590347"
+    "todoId":"108590347",
+    "projectId":"6224144"
 } 
 ```
 
@@ -102,9 +102,9 @@ Following is a sample REST request that can be handled by the getTodo operation.
 
 https://github.com/basecamp/bc3-api/blob/master/sections/todos.md#get-a-to-do
 
-#### Updating a todo
+#### Updating a to-do
 
-The updateTodo operation update a specified to-do.
+The updateTodo operation updates an existing to-do item based on the properties that you specify.
 
 **updateTodo**
 ```xml
@@ -121,14 +121,14 @@ The updateTodo operation update a specified to-do.
 ```
 
 **Properties**
-* todoId: The ID of the to-do to update.
-* projectId: The ID of the project containing the to-do.
-* content: The content of the to-do.
-* description: The description of the to-do.
-* dueDate: The due date of the to-do.
-* assignee: An array of people Id that will be assigned to this to-do.
-* notify: when set to true, will notify the assignees about being assigned.
-* startDate: The start date of the to-do.
+* todoId: The identifier of the to-do item that you want to update.
+* projectId: The identifier of the project in which the to-do item to be updated exists.
+* content: The new content of the to-do item.
+* description: The new description of the to-do item.
+* dueDate: The new due date of the to-do item.
+* assignee: An array of IDs of people you want to assign to the to-do item.
+* notify: Set this to true if you want to notify assignees that they are assigned to the created to-do item.
+* startDate: The new start date of the to-do item.
 
 **Sample request**
 
@@ -139,8 +139,8 @@ Following is a sample REST request that can be handled by the updateTodo operati
     "apiUrl": "https://3.basecampapi.com",
     "accessToken": "BAhbByIBsHsidmVyc2lvbiI6MSwidXNlcl9pZHMiOlsyMTDg13LTA0VDA3OjM2OjMxWiJ9dToJVGltZQ2HmBzAqS77kQ==--1fb2c32e4d904b7960b77d5e81db7c6666dee01c2",
     "accountId": "2669154",
-    "projectId":"6224144",
     "todoId":"108590347",
+    "projectId":"6224144",
     "content": "Update todo",
     "description": "Updating a todo",
     "dueDate": "2018-03-27",
@@ -154,9 +154,9 @@ Following is a sample REST request that can be handled by the updateTodo operati
 
 https://github.com/basecamp/bc3-api/blob/master/sections/todos.md#update-a-to-do
 
-#### Sample configuration
+### Sample configuration
 
-Following is a sample proxy service that illustrates how to connect to Basecamp with the init operation and use the createTodo operation. The sample request for this proxy can be found in createTodo sample request. You can use this sample as a template for using other operations in this category.
+Following is a sample proxy service that illustrates how to connect to Basecamp with the init operation, and then use the createTodo operation. The sample request for this proxy can be found in the createTodo sample request. You can use this sample as a template for using other operations in this category.
 
 **Sample Proxy**
 ```xml
