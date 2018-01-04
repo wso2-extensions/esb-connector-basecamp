@@ -1,6 +1,6 @@
 # Working with To-do Lists in Basecamp
 
-[[  Overview ]](#overview)  [[ Operation details ]](#operation-details)  [[  Sample configuration  ]](#sample-configuration)
+[[Overview]](#overview)  [[Operation details]](#operation-details)  [[Sample configuration]](#sample-configuration)
 
 ### Overview 
 
@@ -9,17 +9,17 @@ For a sample proxy service that illustrates how to work with to-do lists, see [S
 
 | Operation        | Description |
 | ------------- |-------------|
-| [createTodoLists](#creating-a-todo-list)    | Creates a to-do lists|
-| [getTodoLists](#retrieving-a-todo-list)    | Retrieves a to-do lists|
-| [listTodoLists](#listing-todo-lists)    | Lists to-do lists|
-| [updateTodoLists](#updating-a-todo-list)    | Updates a to-do lists|
+| [createTodoLists](#creating-a-to-do-list)    | Creates a to-do list|
+| [getTodoLists](#retrieving-a-to-do-list)    | Retrieves a specified to-do list|
+| [listTodoLists](#retrieving-all-active-to-do-lists)    | Retrieves all active to-do lists in a project|
+| [updateTodoLists](#updating-a-to-do-list)    | Updates a to-do list|
 
 ### Operation details
 
 This section provides more details on each of the operations.
 
-####  Creating a todo list
-The createTodoLists operation adds a new to-do list to the to-do set from the parameters passed.
+####  Creating a to-do list
+The createTodoLists operation adds a new to-do list to a particular to-do set based on the properties that you specify.
 
 **createTodoLists**
 ```xml
@@ -32,10 +32,10 @@ The createTodoLists operation adds a new to-do list to the to-do set from the pa
 ```
 
 **Properties**
-* projectId: The identifier of the project in which the to-do list will be created.
-* todoSetId: The identifier of the to-set.
+* projectId: The identifier of the project in which the to-do list should be created.
+* todoSetId: The identifier of the to-do set in which the to-do list should be created.
 * name: The name of the to-do list.
-* description[optional]: The description of the to-do list.
+* description: Optional - The description of the to-do list.
 
 **Sample request**
 
@@ -49,7 +49,7 @@ Following is a sample REST request that can be handled by the createTodoLists op
     "projectId": "6224144",
     "todoSetId": "17697645",
     "name": "To-do List A",
-    "description": "Create New todo list"
+    "description": "New todo list"
 } 
 ```
 
@@ -57,9 +57,9 @@ Following is a sample REST request that can be handled by the createTodoLists op
 
 https://github.com/basecamp/bc3-api/blob/master/sections/todolists.md#create-a-to-do-list
 
-#### Retrieving a todo list
+#### Retrieving a to-do list
 
-The getTodoLists operation retrieves a specified to-do list.
+The getTodoLists operation retrieves a to-do list based on the properties that you specify.
 
 **getTodoLists**
 ```xml
@@ -70,8 +70,8 @@ The getTodoLists operation retrieves a specified to-do list.
 ```
 
 **Properties**
-* todoListId: The ID of the to-do list to retrieve.
-* projectId: The ID of the project containing the to-do list.
+* todoListId: The identifier of the to-do list that you want to retrieve.
+* projectId: The identifier of the project where the to-do list to be retrieved exists.
 
 **Sample request**
 
@@ -82,8 +82,8 @@ Following is a sample REST request that can be handled by the getTodoLists opera
     "apiUrl": "https://3.basecampapi.com",
     "accessToken": "BAhbByIBsHsidmVyc2lvbiI6MSwidXNlcl9pZHMiOlsyMTDg13LTA0VDA3OjM2OjMxWiJ9dToJVGltZQ2HmBzAqS77kQ==--1fb2c32e4d904b7960b77d5e81db7c6666dee01c2",
     "accountId": "2669154",
-    "projectId":"6224144",
-    "todoListId":"108590347"
+    "todoListId":"108590347",
+    "projectId":"6224144"
 } 
 ```
 
@@ -91,9 +91,9 @@ Following is a sample REST request that can be handled by the getTodoLists opera
 
 https://github.com/basecamp/bc3-api/blob/master/sections/todolists.md#get-a-to-do-list
 
-#### Listing todo Lists
+#### Retrieving all active to-do lists
 
-The listTodoLists operation lists to-do lists for a project.
+The listTodoLists operation retrieves all active to-do lists in a project.
 
 **listTodoLists**
 ```xml
@@ -105,9 +105,9 @@ The listTodoLists operation lists to-do lists for a project.
 ```
 
 **Properties**
-* todoSetId: The identifier of the to-set.
-* projectId: The identifier of the project whose to-do lists you are listing.
-* status[optional]: when set to archived or trashed, will return archived or trashed to-do lists that are in this to-do set.
+* todoSetId: The identifier of the to-do set in which the to-do lists to be retrieved exist.
+* projectId: The identifier of the project where the to-do lists to be retrieved exist.
+* status: Optional - If you want to retrieve archived or trashed to-do lists that exist in a to-do set, you need to set the status to either archived or trashed.
 
 **Sample request**
 
@@ -128,9 +128,10 @@ Following is a sample REST request that can be handled by the listTodoLists oper
 
 https://github.com/basecamp/bc3-api/blob/master/sections/todolists.md#get-to-do-lists
 
-#### Updating a todo list
+#### Updating a to-do list
 
-The updateTodo operation update a specified to-do list. 
+The updateTodo operation updates a to-do list based on the properties that you specify.
+. 
 
 **updateTodoLists**
 ```xml
@@ -143,10 +144,10 @@ The updateTodo operation update a specified to-do list.
 ```
 
 **Properties**
-* todoListId: The ID of the to-do list to update.
-* projectId: The ID of the project containing the to-do list.
-* name: The name of the to-do list.
-* description: The description of the to-do list.
+* todoListId: The identifier of the to-do list that you want to update.
+* projectId: The identifier of the project in which the to-do list that you want to update exists.
+* name: The new name of the to-do list.
+* description: The new description of the to-do list.
 
 **Sample request**
 
@@ -157,10 +158,10 @@ Following is a sample REST request that can be handled by the updateTodoLists op
     "apiUrl": "https://3.basecampapi.com",
     "accessToken": "BAhbByIBsHsidmVyc2lvbiI6MSwidXNlcl9pZHMiOlsyMTDg13LTA0VDA3OjM2OjMxWiJ9dToJVGltZQ2HmBzAqS77kQ==--1fb2c32e4d904b7960b77d5e81db7c6666dee01c2",
     "accountId": "2669154",
-    "projectId":"6224144",
     "todoListId": "17697645",
-    "name": "Update todo name",
-    "description": "Updating a todo"
+    "projectId":"6224144",
+    "name": "Updated to-do name",
+    "description": "Updated to-do"
 } 
 ```
 
@@ -168,9 +169,10 @@ Following is a sample REST request that can be handled by the updateTodoLists op
 
 https://github.com/basecamp/bc3-api/blob/master/sections/todolists.md#update-a-to-do-list
 
-#### Sample configuration
+### Sample configuration
 
-Following is a sample proxy service that illustrates how to connect to Basecamp with the init operation and use the listTodoLists operation. The sample request for this proxy can be found in listTodoLists sample request. You can use this sample as a template for using other operations in this category.
+Following is a sample proxy service that illustrates how to connect to Basecamp with the init operation, and then use the listTodoLists operation. The sample request for this proxy can be found in the listTodoLists sample request. You can use this sample as a template for using other operations in this category.
+
 **Sample Proxy**
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
