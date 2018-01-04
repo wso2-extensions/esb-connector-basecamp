@@ -1,6 +1,6 @@
-# Working with People in Basecamp
+# Working with Projects in Basecamp
 
-[[  Overview ]](#overview)  [[ Operation details ]](#operation-details)  [[  Sample configuration  ]](#sample-configuration)
+[[Overview]](#overview)  [[Operation details]](#operation-details)  [[Sample configuration]](#sample-configuration)
 
 ### Overview 
 
@@ -11,7 +11,7 @@ For a sample proxy service that illustrates how to work with projects, see [Samp
 | ------------- |-------------|
 | [createProject](#creating-a-project)    | Creates a project|
 | [getProject](#retrieving-a-project)    | Retrieves a project|
-| [listProjects](#listing-projects)    | Lists projects|
+| [listProjects](#retrieving-all-projects)    | Retrieves all active/archived projects |
 | [updateProject](#updating-a-project)    | Updates a project|
 
 ### Operation details
@@ -19,7 +19,7 @@ For a sample proxy service that illustrates how to work with projects, see [Samp
 This section provides more details on each of the operations.
 
 ####  Creating a project
-The createProject operation creates a new project. 
+The createProject operation creates a new project based on the specified details. 
 
 **createProject**
 ```xml
@@ -29,8 +29,8 @@ The createProject operation creates a new project.
 </basecamp.createProject>  
 ```
 **Properties**
-* name: The name of the project to be created.
-* description[optional]: The description of the project being created.
+* name: The name of the project that you want to create.
+* description: Optional - The description of the project that you want to create.
 
 **Sample request**
 
@@ -51,7 +51,7 @@ Following is a sample REST request that can be handled by the createProject oper
 https://github.com/basecamp/bc3-api/blob/master/sections/projects.md#create-a-project
 
 #### Retrieving a project
-The getProject operation returns a specified project.
+The getProject operation retrieves a project based on the specified project ID.
 
 **getProject**
 
@@ -62,7 +62,8 @@ The getProject operation returns a specified project.
 ```
 
 **Properties**
-* projectId: Project ID associated with the project(You can find the projectId in basecamp URL, When click a created project in basecamp. The URL is structured like :https://<i></i>3.basecamp.com/**accountId**/projects/**projectId**).
+* projectId: The identifier of the project that you want to retrieve.
+> NOTE: You can find the projectId in the Basecamp project URL. A Basecamp project URL is generally structured as follows:"https://<i></i>3.basecamp.com/**accountId**/projects/**projectId**”.
 
 **Sample request**
 
@@ -81,8 +82,8 @@ Following is a sample REST request that can be handled by the getProject operati
 
 https://github.com/basecamp/bc3-api/blob/master/sections/projects.md#get-a-project
 
-#### Listing projects
-The listProjects operation returns all active/archived projects.
+#### Retrieving all projects
+The listProjects operation retrieves all active/archived projects.
 
 **listProjects**
 ```xml
@@ -92,7 +93,7 @@ The listProjects operation returns all active/archived projects.
 ```
 
 **Properties**
-* status[optional]: when set to archived or trashed, will return archived or trashed projects visible to the current user.
+* status: Optional - If you want to retrieve archived or trashed projects that are visible to the current user, you need to set the status to either archived or trashed.
 
 **Sample request**
 
@@ -112,7 +113,7 @@ Following is a sample REST request that can be handled by the listProjects opera
 https://github.com/basecamp/bc3-api/blob/master/sections/projects.md#get-projects
 
 #### Updating a project
-The updateProject operation allows updating a project's name and description.
+The updateProject operation updates the name and the description of an existing project based on the new values that are specified.
 
 **updateProject**
 ```xml
@@ -124,13 +125,14 @@ The updateProject operation allows updating a project's name and description.
 ```
 
 **Properties**
-* projectId: Project ID associated with the project(You can find the projectId in basecamp URL, When click a created project in basecamp. The URL is structured like :https://<i></i>3.basecamp.com/**accountId**/projects/**projectId**).
-* name: The name of the project.
-* description: The description of the project .
+* projectId: The identifier of the project that you want to update.
+> NOTE: You can find the projectId in the Basecamp project URL. A Basecamp project URL is generally structured as follows:"https://<i></i>3.basecamp.com/**accountId**/projects/**projectId**”.
+* name: The new name that you want the project to have.
+* description: The new description that you want the project to have.
   
 **Sample request**
 
-Following is a sample REST request that can be handled by the listProjects operation.
+Following is a sample REST request that can be handled by the updateProject operation.
 
 ```json
 {
@@ -145,9 +147,10 @@ Following is a sample REST request that can be handled by the listProjects opera
 
 https://github.com/basecamp/bc3-api/blob/master/sections/projects.md#update-a-project
 
-#### Sample configuration
+### Sample configuration
 
-Following is a sample proxy service that illustrates how to connect to Basecamp with the init operation and use the createProject operation. The sample request for this proxy can be found in createProject sample request. You can use this sample as a template for using other operations in this category.
+Following is a sample proxy service that illustrates how to connect to Basecamp with the init operation, and then use the createProject operation. The sample request for this proxy can be found in createProject sample request. You can use this sample as a template for using other operations in this category.
+
 **Sample Proxy**
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
