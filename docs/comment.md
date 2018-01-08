@@ -1,10 +1,10 @@
 # Working with Comments in Basecamp
 
-[[  Overview ]](#overview)  [[ Operation details ]](#operation-details)  [[  Sample configuration  ]](#sample-configuration)
+[[Overview]](#overview)  [[Operation details]](#operation-details)  [[Sample configuration]](#sample-configuration)
 
 ### Overview 
 
-The following operation allows you to work with comments. Click an operation name to see details on how to use it.
+The following operation allows you to work with comments. Click the operation name to see details on how to use it.
 For a sample proxy service that illustrates how to work with comments, see [Sample configuration](#sample-configuration).
 
 | Operation        | Description |
@@ -13,10 +13,10 @@ For a sample proxy service that illustrates how to work with comments, see [Samp
 
 ### Operation details
 
-This section provides more details on each of the operations.
+This section provides more details on the operation.
 
 #### Creating a comment
-The createComment operation  publishes a comment in the project and under the recording. The recording can be a message, todo List, todo and document.
+The createComment operation creates a comment in the project and publishes the comment under a particular recording. The recording can either be a message, a to-do list, a to-do or a document.
 
 **createComment**
 ```xml
@@ -29,8 +29,9 @@ The createComment operation  publishes a comment in the project and under the re
 
 **Properties**
 * content: The content of the comment.
-* recordingId: The identifier of recording. The recording can be a message, todo List, todo and document.
-* projectId: The project identifier to which the comment will be added (When click a project, You can find the projectId in basecamp URL. The URL is structured like :"https://<i></i>3.basecamp.com/**accountId**/projects/**projectId**").
+* recordingId: The identifier of the recording. The recording can either be a message, a to-do list, a to-do or a document.
+* projectId: The identifier of the project in which you want to create a comment.
+> NOTE: You can find the projectId in the Basecamp project URL. A Basecamp project URL is generally structured as follows:"https://<i></i>3.basecamp.com/**accountId**/projects/**projectId**".
 
 **Sample request**
 
@@ -53,7 +54,7 @@ Following is a sample REST request that can be handled by the createComment oper
 
 #### Sample configuration
 
-Following is a sample proxy service that illustrates how to connect to Basecamp with the init operation and use the createComment operation. The sample request for this proxy can be found in createComment sample request. You can use this sample as a template for using other operations in this category.
+Following is a sample proxy service that illustrates how to connect to Basecamp with the init operation, and then use the createComment operation. The sample request for this proxy can be found in the createComment sample request.
 
 **Sample Proxy**
 ```xml
