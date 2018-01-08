@@ -1,6 +1,7 @@
 # Basecamp Connector
 
-The Basecamp [Connector](https://docs.wso2.com/display/EI611/Working+with+Connectors) allows you to access the exposed [Basecamp API](https://github.com/basecamp/bc3-api) through WSO2 Enterprise Integrator (WSO2 EI). Basecamp is a Web-based project management tool.
+The Basecamp [Connector](https://docs.wso2.com/display/EI611/Working+with+Connectors) allows you to access the exposed [Basecamp API](https://github.com/basecamp/bc3-api) through WSO2 Enterprise Integrator (WSO2 EI). Basecamp is a Web-based project management tool that allows you to manage projects and collaborate with clients efficiently.
+
 ## Getting started
 To get started, go to [Configuring Basecamp Operations](config.md). Once you have completed your configurations, you can perform various operations with the connector.
 
