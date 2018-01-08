@@ -1,24 +1,24 @@
-# Working with Events in Basecamp
+# Working with Messages in Basecamp
 
-[[  Overview ]](#overview)  [[ Operation details ]](#operation-details)  [[  Sample configuration  ]](#sample-configuration)
+[[Overview]](#overview)  [[Operation details]](#operation-details)  [[Sample configuration]](#sample-configuration)
 
 ### Overview 
 
 The following operations allow you to work with messages. Click an operation name to see details on how to use it.
-For a sample proxy service that illustrates how to work with messages,, see [Sample configuration](#sample-configuration).
+For a sample proxy service that illustrates how to work with messages, see [Sample configuration](#sample-configuration).
 
 | Operation        | Description |
 | ------------- |-------------|
 | [createMessage](#creating-a-message)    | Creates a new message|
 | [getMessage](#retrieving-a-message)    | Retrieves a specified message|
-| [updateMessage](#updating-a-message)    | Update a specified message|
+| [updateMessage](#updating-a-message)    | Updates a specified message|
 
 ### Operation details
 
 This section provides more details on each of the operations.
 
 #### Creating a message
-The createMessage operation creates a new message from the parameters passed.
+The createMessage operation creates a new message based on the properties that you specify.
 
 **createMessage**
 ```xml
@@ -34,11 +34,12 @@ The createMessage operation creates a new message from the parameters passed.
 
 **Properties**
 * subject: The subject of the message.
-* messageBoardId: The unique identifier of the message board. When click the message Board of the project, You can find the message Board Id in the URL (The URL is structured like :https://<i></i>3.basecamp.com/**accountId**/buckets/**projectId**/message_boards/**messageBoardId**).
-* status: set to active to publish immediately
-* projectId: The unique identifier of the project.
-* content[optional]: The content of the message.
-* categoryId[optional]: The unique identifier of the type of the message.
+* messageBoardId: The unique identifier of the message board. 
+> NOTE: You can find the messageBoardId in the Basecamp URL. A Basecamp URL is generally structured as follows: https://<i></i>3.basecamp.com/**accountId**/buckets/**projectId**/message_boards/**messageBoardId**.
+* status: The status of the message. If you want to publish a message immediately, set this to active.
+* projectId: The unique identifier of the project in which you want to create a message.
+* content: Optional - The content of the message.
+* categoryId: Optional - The unique identifier of the category in which you want to create the message.
 
 **Sample request**
 
@@ -63,7 +64,7 @@ Following is a sample REST request that can be handled by the createMessage oper
 https://github.com/basecamp/bc3-api/blob/master/sections/messages.md#create-a-message
 
 #### Retrieving a message
-The getMessage operation returns the specified message details.
+The getMessage operation retrieves a message based on the specified details.
 
 **getMessage**
 ```xml
@@ -75,8 +76,9 @@ The getMessage operation returns the specified message details.
 ```
 
 **Properties**
-* projectId: The identifier of the project from which the message will be retrieved.
-* messageId: The message identifier to retrieve the specified message.
+* projectId: The unique identifier of the project from which you want to retrieve a message.
+* messageId: The identifier of the specific message that you want to retrieve.
+ .
 
 **Sample request**
 
@@ -97,7 +99,7 @@ Following is a sample REST request that can be handled by the getMessage operati
 https://github.com/basecamp/bc3-api/blob/master/sections/messages.md#get-a-message
 
 #### Updating a message
-The updateMessage operation allows changing the subject, content and category_id of the message.
+The updateMessage operation updates the subject, content and category ID of a message based on the values that you specify.
 
 **updateMessage**
 ```xml
@@ -111,11 +113,11 @@ The updateMessage operation allows changing the subject, content and category_id
 ```
 
 **Properties**
-* projectId: The identifier of the project from which the message will be updated.
-* messageId: The message identifier to retrieve the specified message.
-* subject: The subject of the message.
-* content: The content of the message.
-* categoryId: The unique identifier of the type of the message.
+* projectId: The identifier of the project where the message to be updated exists.
+* messageId: The identifier of the message to be updated.
+* subject: The new subject of the message.
+* content: The new content of the message.
+* categoryId: The unique identifier of the category in which you want to have the message.
 
 **Sample request**
 
@@ -138,9 +140,9 @@ Following is a sample REST request that can be handled by the updateMessage oper
 
 https://github.com/basecamp/bc3-api/blob/master/sections/messages.md#update-a-message
 
-#### Sample configuration
+### Sample configuration
 
-Following is a sample proxy service that illustrates how to connect to Basecamp with the init operation and use the createMessage operation. The sample request for this proxy can be found in createMessage sample request. You can use this sample as a template for using other operations in this category.
+Following is a sample proxy service that illustrates how to connect to Basecamp with the init operation, and then use the createMessage operation. The sample request for this proxy can be found in the createMessage sample request. You can use this sample as a template for using other operations in this category.
 
 **Sample Proxy**
 ```xml
