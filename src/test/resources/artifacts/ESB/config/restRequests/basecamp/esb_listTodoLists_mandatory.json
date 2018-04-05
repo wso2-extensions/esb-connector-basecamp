@@ -1,5 +1,7 @@
 {
   "apiUrl": "%s(apiUrl)",
   "accessToken": "%s(accessToken)",
-  "accountId": "%s(accountId)"
+  "accountId": "%s(accountId)",
+  "projectId": "%s(projectId)",
+  "todoSetId": "%s(todoSetId)"
 }

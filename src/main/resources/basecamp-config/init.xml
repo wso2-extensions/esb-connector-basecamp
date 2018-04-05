@@ -44,13 +44,7 @@
                         scope="transport"/>
             </then>
         </filter>
-        <!-- If the apiUrl is not specified, set the default value as https://basecamp.com/<accountId>/api/v1 -->
-        <filter source="boolean(get-property('uri.var.apiUrl'))" regex="false">
-            <then>
-                <property name="uri.var.apiUrl" value="https://basecamp.com"/>
-            </then>
-        </filter>
         <property name="uri.var.apiUrl"
-                  expression="fn:concat(get-property('uri.var.apiUrl'), '/', get-property('uri.var.accountId'), '/api/v1')"/>
+                  expression="fn:concat(get-property('uri.var.apiUrl'), '/', get-property('uri.var.accountId'))"/>
     </sequence>
 </template>

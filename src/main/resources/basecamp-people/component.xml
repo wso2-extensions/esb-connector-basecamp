@@ -22,5 +22,13 @@
             <file>listPeople.xml</file>
             <description>Returns all people in the account</description>
         </component>
+        <component name="getProjectPeople">
+            <file>getProjectPeople.xml</file>
+            <description>Returns all active people on the project</description>
+        </component>
+        <component name="updateProjectPeople">
+            <file>updateProjectPeople.xml</file>
+            <description>Allows granting new and existing people access to a project, revoking access from people.</description>
+        </component>
     </subComponents>
 </component>

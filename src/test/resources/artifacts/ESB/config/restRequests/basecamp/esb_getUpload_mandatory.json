@@ -1,7 +1,0 @@
-{
-  "apiUrl": "%s(apiUrl)",
-  "accessToken": "%s(accessToken)",
-  "accountId": "%s(accountId)",
-  "projectId": "%s(projectId)",
-  "uploadId": "%s(uploadId)"
-}

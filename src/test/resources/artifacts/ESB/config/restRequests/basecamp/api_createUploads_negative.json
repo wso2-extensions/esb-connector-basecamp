@@ -1,8 +1,0 @@
-{
-  "attachments": [
-    {
-      "token": "%s(token)",
-      "name": "%s(txtFileName)"
-    }
-  ]
-}

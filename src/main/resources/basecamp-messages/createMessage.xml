@@ -17,50 +17,50 @@
 -->
 <template name="createMessage" xmlns="http://ws.apache.org/ns/synapse">
     <parameter name="projectId" description="The unique identifier of the project"/>
+    <parameter name="messageBoardId" description="The unique identifier of the message board"/>
     <parameter name="subject" description="The subject of the message"/>
+    <parameter name="status" description="The status of the message"/>
     <parameter name="content" description="The content of the message"/>
-    <parameter name="subscribers" description="The subscribers of the message"/>
-    <parameter name="attachments" description="The attachments sent along with the message"/>
+    <parameter name="categoryId" description="The type Id  of the message"/>
     <sequence>
         <property name="uri.var.projectId" expression="$func:projectId"/>
+        <property name="uri.var.messageBoardId" expression="$func:messageBoardId"/>
         <property name="uri.var.subject" expression="$func:subject"/>
+        <property name="uri.var.status" expression="$func:status"/>
         <property name="uri.var.content" expression="$func:content"/>
-        <property name="uri.var.subscribers" expression="$func:subscribers"/>
-        <property name="uri.var.attachments" expression="$func:attachments"/>
+        <property name="uri.var.categoryId" expression="$func:categoryId"/>
         <payloadFactory media-type="json">
             <format>
                 {
-                "content":"$1"
+                "subject":"$1",
+                "status":"$2"
                 }
             </format>
             <args>
-                <arg expression="get-property('uri.var.content')"/>
+                <arg expression="get-property('uri.var.subject')"/>
+                <arg expression="get-property('uri.var.status')"/>
             </args>
         </payloadFactory>
         <!-- Construct payload for optional parameters -->
         <script language="js">
             <![CDATA[
 			//payload variables
-			var subject = mc.getProperty("uri.var.subject");
-			var subscribers = mc.getProperty("uri.var.subscribers");
-			var attachments = mc.getProperty("uri.var.attachments");
+			var content = mc.getProperty("uri.var.content");
+			var categoryId = mc.getProperty("uri.var.categoryId");
 			
 			payload = mc.getPayloadJSON();
-			if (subject != null && subject != "") {
-				payload.subject = subject;
+			if (content != null && content != "") {
+				payload.content = content;
 			}
-			if (subscribers != null && subscribers != "") {
-				payload.subscribers = eval("(" + subscribers + ")");
-			}
-			if (attachments != null && attachments != "") {
-				payload.attachments = eval("(" + attachments + ")");
+			if (categoryId != null && categoryId != "") {
+				payload.category_id = categoryId;
 			}
 			mc.setPayloadJSON(payload);	
 		]]>
         </script>
         <call>
             <endpoint>
-                <http method="post" uri-template="{+uri.var.apiUrl}/projects/{+uri.var.projectId}/messages.json"/>
+                <http method="post" uri-template="{uri.var.apiUrl}/buckets/{uri.var.projectId}/message_boards/{uri.var.messageBoardId}/messages.json"/>
             </endpoint>
         </call>
         <!-- Remove response custom header information -->

@@ -3,7 +3,6 @@
   "accessToken": "%s(accessToken)",
   "accountId": "%s(accountId)",
   "projectId": "%s(projectId)",
-  "sectionType": "messages",
-  "sectionId": "%s(messageId)",
-  "content": "sample new"
+  "recordingId": "%s(todoId)",
+  "content": "%s(content)"
 }

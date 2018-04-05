@@ -2,5 +2,8 @@
   "apiUrl": "%s(apiUrl)",
   "accessToken": "%s(accessToken)",
   "accountId": "%s(accountId)",
-  "projectId": "%s(projectId)"
+  "projectId": "%s(projectId)",
+  "messageBoardId": "%s(messageBoardId)",
+  "status": "%s(status)",
+  "subject":"%s(subject)"
 }

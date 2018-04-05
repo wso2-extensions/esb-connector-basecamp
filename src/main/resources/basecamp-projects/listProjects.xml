@@ -16,22 +16,13 @@
  ~  under the License.
 -->
 <template name="listProjects" xmlns="http://ws.apache.org/ns/synapse">
-    <parameter name="isArchived" description="This parameter decides whether to return the archived projects or not"/>
+    <parameter name="status"
+               description="when set to archived or trashed, will return archived or trashed projects"/>
     <sequence>
-        <property name="uri.var.isArchived" expression="$func:isArchived"/>
-        <filter source="get-property('uri.var.isArchived')" regex="true">
-            <then>
-                <property name="uri.var.apiUrl"
-                          expression="fn:concat(get-property('uri.var.apiUrl'), '/projects/archived.json')"/>
-            </then>
-            <else>
-                <property name="uri.var.apiUrl"
-                          expression="fn:concat(get-property('uri.var.apiUrl'), '/projects.json')"/>
-            </else>
-        </filter>
+        <property name="uri.var.status" expression="$func:status"/>
         <call>
             <endpoint>
-                <http method="get" uri-template="{+uri.var.apiUrl}"/>
+                <http method="get" uri-template="{uri.var.apiUrl}/projects.json?status={uri.var.status}"/>
             </endpoint>
         </call>
         <!-- Remove response custom header information -->

@@ -26,5 +26,9 @@
             <file>createTodo.xml</file>
             <description>Adds a new todo to the specified todolist from passed parameters</description>
         </component>
+        <component name="updateTodo">
+            <file>updateTodo.xml</file>
+            <description>Allows changing the name and description of the to-do list</description>
+        </component>
     </subComponents>
 </component>

@@ -30,5 +30,9 @@
             <file>createProject.xml</file>
             <description>Create a project</description>
         </component>
+        <component name="updateProject">
+            <file>updateProject.xml</file>
+            <description>Update a project</description>
+        </component>
     </subComponents>
 </component>

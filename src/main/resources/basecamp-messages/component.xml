@@ -26,5 +26,9 @@
             <file>createMessage.xml</file>
             <description>Creates a new message from passed parameters</description>
         </component>
+        <component name="updateMessage">
+            <file>updateMessage.xml</file>
+            <description>changing the subject and content of the message</description>
+        </component>
     </subComponents>
 </component>
