@@ -1,0 +1,13 @@
+{
+    "name": "Basecamp",
+    "owner": "WSO2",
+    "category": "Issue Tracking and Project Management",
+    "documentationUrl": "https://github.com/wso2-extensions/esb-connector-basecamp/tree/org.wso2.carbon.connector.basecamp-1.0.2/docs",
+    "description": "The Basecamp connector allows you to access the exposed Basecamp API through WSO2 ESB. Basecamp is a Web-based project management tool. The connector uses the Basecamp REST API reference. ",
+    "status": "Active",
+    "labels": [
+        "Issue-Tracking",
+        "Project-Management"
+    ],
+    "releases": []
+}
